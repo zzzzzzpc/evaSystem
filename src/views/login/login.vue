@@ -65,7 +65,7 @@
 					alert(res.message)
 					if (res.message == 'success') {
 					 	this.$router.push({
-					 		name: 'Student'
+					 		name: 'Teacher'
 					 	})
 					}
 				})

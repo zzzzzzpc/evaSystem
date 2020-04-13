@@ -9,5 +9,13 @@ export default {
 			message : 'success',
 			data: loginResult
 		};
+	},
+	'post|/teacher': option =>{
+		return {
+			status: 200,
+			name : '肖夢杰',
+			id: 'xmj5201314'
+		};
 	}
 }
+

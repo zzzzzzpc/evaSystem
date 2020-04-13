@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Student from '../views/student/student.vue'
 import Login from '../views/login/login.vue'
+import Teacher from '../views/teacher/teacher.vue'
 
 
 Vue.use(VueRouter)
@@ -16,6 +17,11 @@ Vue.use(VueRouter)
 	  path:'/',
 	  name:'Login',
 	  component: Login
+  },
+  {
+	  path:'/teacher',
+	  name:'Teacher',
+	  component: Teacher
   }
   // {
   //   path: '/about',
