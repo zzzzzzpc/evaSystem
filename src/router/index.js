@@ -5,14 +5,28 @@ import Login from '../views/login/login.vue'
 import Teacher from '../views/teacher/teacher.vue'
 import CourseInfo from '../components/courseInfo.vue'
 import SignUpScore from '../components/signUpScore.vue'
+import SelectedCourses from '../components/selectedCourses.vue'
+import Warning from '../components/warning.vue'
 
 Vue.use(VueRouter)
 
   const routes = [
   {
-    path: '/student',
+    path: '/Student',
     name: 'Student',
-    component: Student
+    component: Student,
+	children:[
+			  {
+				  path: '/navigation1',
+				  name: 'SelectedCourses',
+				  component: SelectedCourses
+			  },
+			  {
+				  path:'/navigation2',
+				  name: 'Warning',
+				  component: Warning
+			  }
+	]
   },
   {
 	  path:'/',
