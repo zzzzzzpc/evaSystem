@@ -14,7 +14,7 @@ export default {
 		return {
 			status: 200,
 			name : '肖夢杰',
-			id: 'xmj5201314'
+			id: '1234567890'
 		};
 	}
 }

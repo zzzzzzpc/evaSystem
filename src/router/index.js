@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import Student from '../views/student/student.vue'
 import Login from '../views/login/login.vue'
 import Teacher from '../views/teacher/teacher.vue'
-
+import CourseInfo from '../components/courseInfo.vue'
+import SignUpScore from '../components/signUpScore.vue'
 
 Vue.use(VueRouter)
 
@@ -21,7 +22,19 @@ Vue.use(VueRouter)
   {
 	  path:'/teacher',
 	  name:'Teacher',
-	  component: Teacher
+	  component: Teacher,
+	  children:[
+		  {
+			  path: '/navigation1',
+			  name: 'CourseInfo',
+			  component: CourseInfo
+		  },
+		  {
+			  path:'/navigation2',
+			  name: 'SignUpScore',
+			  component: SignUpScore
+		  }
+	  ]
   }
   // {
   //   path: '/about',

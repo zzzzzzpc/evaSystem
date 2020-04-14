@@ -12,10 +12,10 @@
 			return {
 				name: "",
 				id: "",
-				index1: "唱歌",
-				index2: "跳舞",
-				index3: "籃球",
-				index4: "rapppppr"
+				index1: "所授課程信息",
+				index2: "登記學生成績",
+				index3: "修改個人信息",
+				index4: "退出系統登錄"
 			}
 		},
 		components: {
@@ -24,6 +24,7 @@
 		methods: {
 			getInfo() {
 				TeacherApi.getInfo(3).then(res => {
+					this.$store.commit('modify', res.id)
 					this.name = res.name
 					this.id = res.id
 				})
