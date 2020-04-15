@@ -39,12 +39,12 @@ Vue.use(VueRouter)
 	  component: Teacher,
 	  children:[
 		  {
-			  path: 'teacher/navigation1',
+			  path: '/navigation1',
 			  name: 'CourseInfo',
 			  component: CourseInfo
 		  },
 		  {
-			  path:'teacher/navigation2',
+			  path:'/navigation2',
 			  name: 'SignUpScore',
 			  component: SignUpScore
 		  }

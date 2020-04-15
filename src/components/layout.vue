@@ -13,15 +13,17 @@
 				<el-col :span="24">
 
 					<el-menu :default-active="$route.path" router>
-						<el-menu-item index="/navigation1">
+
+            <el-menu-item index="/navigation1">
 							<i class="el-icon-crop"></i>
 							<span slot="title">{{index1}}</span>
 						</el-menu-item>
+            </rooter-link>
 						<el-menu-item index="/navigation2">
 							<i class="el-icon-crop"></i>
 							<span slot="title">{{index2}}</span>
 						</el-menu-item>
-						<el-menu-item insdex="/" disabled>
+						<el-menu-item index="/" disabled>
 							<i class="el-icon-crop"></i>
 							<span slot="title">{{index3}}</span>
 						</el-menu-item>
@@ -33,13 +35,14 @@
 				</el-col>
 			</el-aside>
 			<el-main>
-				<router-view/>
+				<router-view></router-view>
 			</el-main>
 		</el-container>
 	</el-container>
 </template>
 
 <script>
+
 	export default {
 		props: ["name", "id", "index1", "index2", "index3", "index4"],
 
@@ -50,7 +53,10 @@
 			handleClose(key, keyPath) {
 				console.log(key, keyPath);
 			}
-		}
+		},
+    created(){
+      this.setAttribute("index", "navigation1")
+    }
 	}
 </script>
 
