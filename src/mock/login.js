@@ -10,13 +10,6 @@ export default {
 			data: loginResult
 		};
 	},
-	'post|/teacher': option =>{
-		return {
-			status: 200,
-			name : '肖夢杰',
-			id: '1234567890'
-		};
-	},
 	'post|/student': option =>{
 		return {
 			status: 200,

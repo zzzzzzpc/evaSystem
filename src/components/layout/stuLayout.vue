@@ -14,12 +14,12 @@
 
 					<el-menu :default-active="$route.path" router>
 
-            <el-menu-item index="/navigation1">
+            <el-menu-item index="navigation1">
 							<i class="el-icon-crop"></i>
 							<span slot="title">{{index1}}</span>
 						</el-menu-item>
             </rooter-link>
-						<el-menu-item index="/navigation2">
+						<el-menu-item index="navigation2">
 							<i class="el-icon-crop"></i>
 							<span slot="title">{{index2}}</span>
 						</el-menu-item>
@@ -54,9 +54,6 @@
 				console.log(key, keyPath);
 			}
 		},
-    created(){
-      this.setAttribute("index", "navigation1")
-    }
 	}
 </script>
 

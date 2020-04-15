@@ -1,24 +1,41 @@
 import request from '../utils/request.js'
 
 export default {
-	getInfo(id) {
+	getInfo(tno) {
 		return request({
 			url: '/teacher',
 			method: 'post',
 			data: {
-				'id': id,
+				'tno': tno,
 			}
 		})
 	},
-	getCourseInfo(id) {
+	getCourseInfo(tno) {
 		return request({
-			url: '/CourseInfo',
+			url: '/teaCourseInfo',
 			method: 'post',
 			data: {
-				'id': id,
-			}
-
-		})
-	}
+				'tno': tno,
+			},
+  })
+  },
+  getCourseDetail(cno){
+    return request({
+      url: '/teaCourseDetail',
+      method: 'post',
+      data:{
+        'cno' : cno,
+      }
+    })
+  },
+  getCourseStu(cno){
+    return request({
+      url: '/teaCourseStu',
+      method: 'post',
+      data:{
+        'cno' : cno
+      }
+    })
+  }
 
 }
