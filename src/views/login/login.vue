@@ -1,6 +1,6 @@
 <template>
 	<div>
-		
+
 		<div style="display: flex;justify-content: center;margin-top: 150px">
 			<el-card style="width: 400px">
 				<div slot="header" class="clearfix">
@@ -31,14 +31,14 @@
 				</table>
 			</el-card>
 		</div>
-		
+
 
 	</div>
 </template>
 
 <script>
 	import login from '../../api/login.js'
-	
+
 	export default {
 		//单页面中不支持前面的data:{}方式
 		data() {
@@ -63,7 +63,8 @@
 				// alert(JSON.stringify(this.user)) //可以直接把this.user对象传给后端进行校验用户名和密码
 				login.login(this.user.username, this.user.password).then(res => {
 					if (res.message == 'success')
-					 	this.$router.push({name: 'Student'});
+            
+					 	this.$router.push({name: 'Teacher'});
 				})
 			}
 		},

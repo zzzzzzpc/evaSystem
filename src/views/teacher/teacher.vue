@@ -1,5 +1,6 @@
 <template>
 	<Layout :name="name" :id="id" :index1="index1" :index2="index2" :index3="index3" :index4="index4"></Layout>
+	
 </template>
 
 <script>

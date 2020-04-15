@@ -11,23 +11,23 @@ import Warning from '../components/warning.vue'
 Vue.use(VueRouter)
 
   const routes = [
-  {
-    path: '/Student',
-    name: 'Student',
-    component: Student,
-	children:[
-			  {
-				  path: '/navigation1',
-				  name: 'SelectedCourses',
-				  component: SelectedCourses
-			  },
-			  {
-				  path:'/navigation2',
-				  name: 'Warning',
-				  component: Warning
-			  }
-	]
-  },
+  //{
+ //    path: '/Student',
+ //    name: 'Student',
+ //    component: Student,
+	// children:[
+	// 		  {
+	// 			  path: '/navigation1',
+	// 			  name: 'SelectedCourses',
+	// 			  component: SelectedCourses
+	// 		  },
+	// 		  {
+	// 			  path:'/navigation2',
+	// 			  name: 'Warning',
+	// 			  component: Warning
+	// 		  }
+	// ]
+ //  },
   {
 	  path:'/',
 	  name:'Login',
@@ -39,12 +39,12 @@ Vue.use(VueRouter)
 	  component: Teacher,
 	  children:[
 		  {
-			  path: '/navigation1',
+			  path: 'teacher/navigation1',
 			  name: 'CourseInfo',
 			  component: CourseInfo
 		  },
 		  {
-			  path:'/navigation2',
+			  path:'teacher/navigation2',
 			  name: 'SignUpScore',
 			  component: SignUpScore
 		  }
