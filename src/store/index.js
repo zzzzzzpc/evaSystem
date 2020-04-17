@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		id: '12345678',
-    role: 'teacher',
+    role: '老师',
+    name:''
 	},
 
 	mutations: {

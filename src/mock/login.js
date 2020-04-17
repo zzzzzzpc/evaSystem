@@ -1,21 +1,19 @@
-let loginResult = [{
-	role : 1
-}]
-
 export default {
 	'post|/login': option =>{
 		return {
-			status: 200,
-			message : 'success',
-			data: loginResult
+			message : 'success',//失败返回'fail'
+      role: '老师',
+      //按照身份返回“学生”，
+      //“老师”，“辅导员”，
+      //“课程负责人”，“专业负责人”
+
 		};
 	},
 	'post|/student': option =>{
 		return {
 			status: 200,
-			name : '言言',
+			sname : '言言',
 			id: '1234567890'
 		};
 	}
 }
-

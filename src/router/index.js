@@ -3,10 +3,11 @@ import VueRouter from 'vue-router'
 import Student from '../views/student/student.vue'
 import Login from '../views/login/login.vue'
 import Teacher from '../views/teacher/teacher.vue'
-import CourseInfo from '../components/teacherFun/courseInfo.vue'
-import SignUpScore from '../components/teacherFun/signUpScore.vue'
-import SelectedCourses from '../components/studentFun/selectedCourses.vue'
-import Warning from '../components/studentFun/warning.vue'
+import teaCourseInfo from '../components/teacherFun/courseInfo.vue'
+import teaSignUpScore from '../components/teacherFun/signUpScore.vue'
+import ChangeInfo from '../components/common/ChangeInfo.vue'
+import stuCourseInfo from '../components/studentFun/courseInfo.vue'
+import stuWarning from '../components/studentFun/warning.vue'
 
 Vue.use(VueRouter)
 
@@ -22,30 +23,46 @@ Vue.use(VueRouter)
 	  component: Teacher,
     children:[
       {
-          path: '/tea_navigation1',
-      		name: 'CourseInfo',
-          component: CourseInfo
+          path: 'navigation1',
+      		name: 'teaCourseInfo',
+          component: teaCourseInfo
       },
       {
 
-      		path:'/tea_navigation2',
-      		name: 'SignUpScore',
-      		component: SignUpScore
+      		path:'navigation2',
+      		name: 'teaSignUpScore',
+      		component: teaSignUpScore
+      },
+      {
+          path:'navigation3',
+          name: 'teaChangeInfo',
+          component: ChangeInfo
       }
-
     ]
    },
+   {
+     path:'/student',
+     name:'Student',
+     component: Student,
+     children:[
+       {
+           path: 'navigation1',
+       		name: 'stuCourseInfo',
+           component: stuCourseInfo
+       },
+       {
 
-
-
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
+       		path:'navigation2',
+       		name: 'stuWarning',
+       		component: stuWarning
+       },
+       {
+           path:'navigation3',
+           name: 'stuChangeInfo',
+           component: ChangeInfo
+       }
+     ]
+    },
 ]
 
 const router = new VueRouter({

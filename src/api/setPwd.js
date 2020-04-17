@@ -1,13 +1,13 @@
 import request from '../utils/request.js'
 
 export default {
-	login(id, pwd) {
+	setPwd(id, pwd) {
 		return request({
-			url:'/login',
+			url:'/setPwd',
 			method:'post',
 			data: {
-				'id' : id,//登录用户的id
-				'pwd' : pwd//登录用户的密码
+				'id' : id,
+				'pwd' : pwd
 			}
 		})
 	}
