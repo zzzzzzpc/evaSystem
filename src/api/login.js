@@ -1,20 +1,19 @@
 import request from '../utils/request.js'
-// Vue.prototype.$request = request
+// 引入qs模块，用来序列化post类型的数据
+import QS from 'qs'
 
 export default {
-  login(id, pwd) {
-    let param = new URLSearchParams()
-    param.append("id", id)
-    param.append("pwd", pwd)
-    return request({
-        //url: 'http://148.70.15.23:8000/login/',
-        url:'/login',
-        method: 'post',
-        params: {
-          'id': id,
-          'pwd':pwd
-        }
-
-    })
-}
+	login(id, pwd) {
+		// let param = new URLSearchParams();
+		// param.append("id", id);
+		// param.append("pwd", pwd);
+		return request({
+			url:'/login',
+			method:'post',
+			data: QS.stringify({
+				'id':id,
+				'pwd':pwd
+			})
+		})
+	}
 }
