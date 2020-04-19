@@ -62,12 +62,11 @@
 			doLogin() { //一点击登录按钮，这个方法就会执行
 				// alert(JSON.stringify(this.user)) //可以直接把this.user对象传给后端进行校验用户名和密码
 				login.login(this.user.username, this.user.password).then(res => {
-					if (res.message == 'success'){
+			if (res.message == 'success'){
               this.$store.state.id = this.user.username
               this.$store.state.role = res.role
-			  this.$store.state.name=res.tname
-              // this.$router.push({path: '/teacher/navigation3'})
-			  this.$router.push({path: '/student/navigation3'})
+              // this.$router.push({path: '/spAdmin/navigation3'})
+              this.$router.push({path: '/studentInfo/navigation3'})
             }
 				})
 			}

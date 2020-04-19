@@ -17,7 +17,7 @@
 
 				<el-col :span="24">
 
-					<el-menu :default-active="$route.path" router>
+					<el-menu :default-active="$route.path" router >
 
             <el-menu-item index="navigation1">
 							<i class="el-icon-notebook-1"></i>

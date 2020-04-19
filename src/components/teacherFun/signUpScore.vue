@@ -47,7 +47,7 @@
           </el-table-column>
         </el-table>
       </el-dialog>
-      
+
       <el-dialog width="30%" :title="innerTitle" :visible.sync="innerVisible" append-to-body>
         <el-select v-model="value" clearable placeholder="请选择指标点登记">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
@@ -98,7 +98,7 @@
         })
       },
       showStudIndex(row) {
-        this.innerTitleInfo = "【" + row.sname + "】"+ "在【" + this.pageCname + "】的成绩"
+        this.innerTitleInfo = "【" + row.sname + "】" + "在【" + this.pageCname + "】的成绩"
         this.innerVisible_info = true
         TeacherApi.getIndexDetailScore(this.pageTag, row.sno).then(res => {
           this.courseScore = res.course_score
@@ -107,13 +107,20 @@
       },
 
       editStu(row) {
-        this.pageSname = row.sname
-        this.innerVisible = true
+        if (row.roll_state == "审核完成") {
+          this.$notify.error({
+            title: '错误',
+            message: '审核完成，不可修改'
+          });
+        } else {
+          this.pageSname = row.sname
+          this.innerVisible = true
 
-        this.innerTitle = "登记【" + row.sname + "】" + "在 【" + this.pageCname + "】 的成绩"
-        TeacherApi.getIndexDetailState(this.pageTag, row.sno).then(res => {
-          this.options = res.options
-        })
+          this.innerTitle = "登记【" + row.sname + "】" + "在 【" + this.pageCname + "】 的成绩"
+          TeacherApi.getIndexDetailState(this.pageTag, row.sno).then(res => {
+            this.options = res.options
+          })
+        }
       },
       commit() {
         TeacherApi.postIndexDetailScore(this.pageTag, this.pageSno, this.value, this.score).then(res => {
@@ -142,7 +149,7 @@
       return {
 
         innerTitle: "",
-        innerTitleInfo:"",
+        innerTitleInfo: "",
 
         multipleSelection: [],
         total: 0,
@@ -166,9 +173,9 @@
         score: 60,
 
         innerVisible_info: false,
-        indexDetailData: [] ,//学生指标点的详细信息
+        indexDetailData: [], //学生指标点的详细信息
 
-        courseScore:0
+        courseScore: 0
       }
     },
 

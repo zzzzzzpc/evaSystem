@@ -60,6 +60,7 @@
         pagesize: 4,
         currentPage: 1,
         tableData: [],
+        
         //以下是详细信息数据
         gridData: [], //gridData放置详细信息
         dialogTableVisible: false,

@@ -4,16 +4,9 @@
       <p style="font-family:PingFang SC">西北大学毕业管理系统
       <el-tag type="primary">{{role}}端</el-tag>
       </p>
-
-			<!-- <i class="el-icon-user-solid"></i>
-			姓名:{{name}}&nbsp;&nbsp;
-			<i class="el-icon-collection-tag"></i>
-			ID:{{id}}
-      <i class="el-icon-collection-tag"></i> -->
 		</el-header>
 		<el-container>
 			<el-aside width="200px">
-
 
 				<el-col :span="24">
 
@@ -32,10 +25,6 @@
 							<i class="el-icon-suitcase"></i>
 							<span slot="title">{{index3}}</span>
 						</el-menu-item>
-						<el-menu-item index="/">
-							<i class="el-icon-switch-button"></i>
-							<span slot="title">{{index4}}</span>
-						</el-menu-item>
 					</el-menu>
 				</el-col>
 
@@ -51,7 +40,7 @@
 
 	export default {
 
-		props: ["name", "id", "index1", "index2", "index3", "index4", "role"],
+		props: ["name", "id", "index1", "index2", "index3", "role"],
 
 		methods: {
 			handleOpen(key, keyPath) {

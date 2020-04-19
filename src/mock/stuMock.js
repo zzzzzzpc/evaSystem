@@ -15,12 +15,25 @@ export default {
   },
   'post|/stuCourseDetailScore': option => {
     return {
+	  score:"90", //这门课的课程达成度
+    cname: "数据结构",//课程名
       tableData: [{
-        cname: "数据结构",//课程名
-        course_detail_name: "1234567890",//课程教学大纲内容
+        course_detail_name: "其中作业，平时表现，期末表现",//课程教学大纲内容
         index_detail_id: "1",//指标点编号
         index_detail_content: "qwerrtyrtyr",//指标点内容
-        score: "90",//这个课在这个指标点的实际分值
+        index_score: "8",//这个课在这个指标点的实际分值
+      },
+      {
+        course_detail_name: "其中作业，平时表现，期末表现",//课程教学大纲内容
+        index_detail_id: "2",//指标点编号
+        index_detail_content: "qwerrtyrtyr",//指标点内容
+        index_score: "8",//这个课在这个指标点的实际分值
+      },
+      {
+        course_detail_name: "其中作业，平时表现，期末表现",//课程教学大纲内容
+        index_detail_id: "3",//指标点编号
+        index_detail_content: "qwerrtyrtyr",//指标点内容
+        index_score: "8",//这个课在这个指标点的实际分值
       }],
     }
 
