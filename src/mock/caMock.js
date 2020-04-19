@@ -1,12 +1,10 @@
-
-
 export default {
-  'post|/teacher': option => {
+  'post|/courseAdmin': option => {
     return {
       tname: '肖夢杰',//教师姓名
     };
   },
-  'post|/teaCourseInfo': option => {
+  'post|/caCourseInfo': option => {
     return {
       total: 4,//一共教了多少课程的数目
       tableData: [{
@@ -45,7 +43,7 @@ export default {
       ],
     };
   },
-  'post|/teaCourseDetail': option => {
+  'post|/caCourseDetail': option => {
     return {
       tableData: [{
         cname: "数据结构",//课程名
@@ -55,7 +53,7 @@ export default {
       }],
     };
   },
-  'post|/teaCourseStu': option => {
+  'post|/caCourseStu': option => {
     return {
       tableData: [{
         /*这里roll_state指的是课程的登记状态，
@@ -88,42 +86,10 @@ export default {
       ]
     }
   },
-  'post|/teaCourseIndexDetailScore': option => {
+  
+  'post|/caCourseState' :option => {
     return {
-      message:"success",//成功就返回success,失败fail
-    }
-
-  },
-  'post|/teaIndexDetailState': option => {
-    return {
-      options: [{
-          value: '指标点1编号',
-          label: '指标点1的内容',
-          state: '未登记',
-        },
-        {
-          value: '指标点2编号',
-          label: '指标点2的内容',
-          state: '已登记',
-        }
-      ], //存储指标点的序号
-    }
-  },
-  'post|/teaIndexDetailScore' : option => {
-    return {
-      course_score: 90,//这个学生这门课的课程达成度
-      indexDetailData: [{
-        index_detail_id:"1-1",//指标点编号
-        score:"3"//指标点的具体值
-      },
-      {
-        index_detail_id:"1-2",
-        score: "4"
-      },
-      {
-        index_detail_id:"1-3",
-        score:"5"
-      }]
+      message:"success" //修改成功就是success否则返回fail
     }
   }
 }

@@ -8,6 +8,10 @@ import teaSignUpScore from '../components/teacherFun/signUpScore.vue'
 import ChangeInfo from '../components/common/ChangeInfo.vue'
 import stuCourseInfo from '../components/studentFun/courseInfo.vue'
 import stuWarning from '../components/studentFun/warning.vue'
+import CourseAdmin from '../views/courseAdmin/courseAdmin.vue'
+import Review from '../components/caFun/review.vue'
+import SpAdmin from '../views/spAdmin/sp.vue'
+import SPFormat from '../components/spFun/spFormat.vue'
 
 Vue.use(VueRouter)
 
@@ -18,7 +22,7 @@ Vue.use(VueRouter)
 	  component: Login
   },
   {
-	  path:'/teacher',
+	  path:'/teacherInfo',
 	  name:'Teacher',
 	  component: Teacher,
     children:[
@@ -41,13 +45,13 @@ Vue.use(VueRouter)
     ]
    },
    {
-     path:'/student',
+     path:'/studentInfo',
      name:'Student',
      component: Student,
      children:[
        {
            path: 'navigation1',
-       		name: 'stuCourseInfo',
+           name: 'stuCourseInfo',
            component: stuCourseInfo
        },
        {
@@ -63,6 +67,52 @@ Vue.use(VueRouter)
        }
      ]
     },
+    {
+      path:'/courseAdminInfo',
+      name:'CourseAdmin',
+      component: CourseAdmin,
+      children:[
+        {
+            path: 'navigation1',
+        		name: 'caCourseInfo',
+            component: teaCourseInfo
+        },
+        {
+
+        		path:'navigation2',
+        		name: 'caReview',
+        		component: Review
+        },
+        {
+            path:'navigation3',
+            name: 'caChangeInfo',
+            component: ChangeInfo
+        }
+      ]
+     },
+     {
+       path:'/spAdminInfo',
+       name:'spAdmin',
+       component: SpAdmin,
+       children:[
+         {
+             path: 'navigation1',
+         		name: 'spFormat',
+             component: SPFormat,
+         },
+         {
+
+         		path:'navigation2',
+         		name: 'caReview',
+         		component: Review
+         },
+         {
+             path:'navigation3',
+             name: 'caChangeInfo',
+             component: ChangeInfo
+         }
+       ]
+      },
 ]
 
 const router = new VueRouter({

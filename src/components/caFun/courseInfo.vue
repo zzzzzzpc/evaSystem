@@ -1,27 +1,5 @@
 <template>
   <div>
-    <div class="transition-box" style="background-color: #CC5A5A;">个人评价达成度：{{indiv_score}}</div>
-
-    <hr/>
-    <div class="transition-box">指标点评价达成度</div>
-    <el-table ref="filterTable" :data="indexTableData.slice((currentPageIndex-1) * pagesize, currentPageIndex * pagesize)" style="width: 100%">
-      <el-table-column prop="index_detail_id" label="指标点序号" sortable width="180" column-key="courseId">
-      </el-table-column>
-      <el-table-column prop="index_detail_content" label="指标点内容" width="180">
-      </el-table-column>
-
-      <el-table-column prop="score" label="指标点分数" width="100">
-      </el-table-column>
-      </el-table-column>
-    </el-table>
-    <p></p>
-    <div style="text-align: center;margin-top: 30px;">
-      <el-pagination background layout="prev, pager, next" :total="total_index" @current-change="current_change_index">
-      </el-pagination>
-    </div>
-    <p></p>
-    <hr/>
-    <div class="transition-box">课程达成度</div>
     <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
       <el-table-column prop="cno" label="课程号" sortable width="180" column-key="courseId">
       </el-table-column>
@@ -42,9 +20,9 @@
           <el-tag :type="scope.row.nature == '必修课程' ? 'primary' : 'success'" disable-transitions>{{scope.row.nature}}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column fixed="right" label="查看课程详细成绩" width="100">
+      <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
-          <el-button @click="showStuScoreDetail(scope.row)" type="primary" icon="el-icon-info" circle></el-button>
+          <el-button @click="showDetail(scope.row)" type="primary" icon="el-icon-message" circle></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -55,33 +33,33 @@
     </div>
     <!-- 展示对话框 -->
     <el-dialog title="课程详细信息" :visible.sync="dialogTableVisible">
-      <p>课程达成度：{{courseScore}}</p>
       <el-table :data="gridData">
         <el-table-column property="course_detail_name" label="课程教学大纲" width="150"></el-table-column>
         <el-table-column property="index_detail_id" label="指标点id" width="200"></el-table-column>
         <el-table-column property="index_detail_content" label="指标点内容" width="200"></el-table-column>
-        <el-table-column property="index_score" label="分值" width="200"></el-table-column>
       </el-table>
+      <p></p>
+      <el-button type="primary" @click="showStu">查看选课学生名单</el-button>
+      <el-dialog width="30%" title="选课学生名单" :visible.sync="innerVisible" append-to-body>
+        <el-table :data="stuData">
+          <el-table-column property="sno" label="学号" width="150" sortable></el-table-column>
+          <el-table-column property="sname" label="姓名" width="150"></el-table-column>
+        </el-table>
+      </el-dialog>
     </el-dialog>
   </div>
 </template>
 
 <script>
-  import StudentApi from '../../api/student.js'
+  import TeacherApi from '../../api/teacher.js'
   export default {
     data() {
       return {
-        indiv_score: 100,
-        courseScore:'',
         multipleSelection: [],
         total: 0,
-        total_index:0,
-
         pagesize: 4,
         currentPage: 1,
-        currentPageIndex: 1,
         tableData: [],
-        indexTableData:[],
         //以下是详细信息数据
         gridData: [], //gridData放置详细信息
         dialogTableVisible: false,
@@ -89,6 +67,8 @@
         formLabelWidth: '120px',
         outerVisible: false,
         //内层对话框数据
+        stuData: [],
+        innerVisible: false,
         pageTag: '' //用来存放查看学生选课的课程号
       }
     },
@@ -112,37 +92,38 @@
       current_change(currentPage) {
         this.currentPage = currentPage
       },
-      current_change_index(currentPageIndex) {
-        this.currentPageIndex = currentPageIndex
-      },
-
-      getStuIndex(){
-        StudentApi.getIndexStu(this.$store.state.id).then(res =>{
-          this.indiv_score = res.indiv_score
-          this.total_index = res.total
-          this.indexTableData = res.tableData
-        })
-      },
-
       getCourseInfo() {
-        StudentApi.getCourseStuSelect(this.$store.state.id).then(res => {
+        TeacherApi.getCourseInfo(this.$store.state.id).then(res => {
           this.total = (Math.ceil(res.total / this.pagesize)) * 10
           this.tableData = res.tableData
 
         })
       },
-      showStuScoreDetail(row) {
+      showDetail(row) {
         this.pageTag = row.cno
         this.dialogTableVisible = true
-        StudentApi.getCourseDetailScore(this.$store.state.id, row.cno).then(res => {
-           this.gridData = res.tableData
-           this.courseScore = res.score
+        TeacherApi.getCourseDetail(row.cno).then(res => {
+
+          this.gridData = [{
+            cname: res.tableData[0].cname,
+            course_detail_name: res.tableData[0].course_detail_name,
+            index_detail_id: res.tableData[0].index_detail_id,
+            index_detail_content: res.tableData[0].index_detail_content
+          }]
+
         })
       },
+      showStu() {
+        this.innerVisible = true
+        TeacherApi.getCourseStu(this.pageTag).then(res => {
+          this.stuData = res.tableData
+        })
+
+      }
+
     },
     created(to, from, next) {
       this.getCourseInfo()
-      this.getStuIndex()
     }
 
 
