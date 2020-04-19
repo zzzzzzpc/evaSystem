@@ -8,7 +8,7 @@ export default {
 		// param.append("id", id);
 		// param.append("pwd", pwd);
 		return request({
-			url:'/login',
+			url:'http://148.70.15.23:8000/login/',
 			method:'post',
 			data: QS.stringify({
 				'id':id,

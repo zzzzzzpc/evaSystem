@@ -26,8 +26,11 @@
 		},
 		methods: {
 			getInfo() {
-				StudentApi.getInfo(3).then(res => {
+				StudentApi.getInfo(this.$store.state.id).then(res => {
+					console.log("45454"+res)
+					console.log("45454"+res.sname)
 					this.$store.state.name = res.sname
+					console.log("67776"+this.$store.state.name)
 					this.name = res.sname
 					this.id = this.$store.state.id
 					this.$store.state.role = '学生'

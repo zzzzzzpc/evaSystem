@@ -65,7 +65,9 @@
 					if (res.message == 'success'){
               this.$store.state.id = this.user.username
               this.$store.state.role = res.role
-              this.$router.push({path: '/teacher/navigation3'})
+			  this.$store.state.name=res.tname
+              // this.$router.push({path: '/teacher/navigation3'})
+			  this.$router.push({path: '/student/navigation3'})
             }
 				})
 			}
