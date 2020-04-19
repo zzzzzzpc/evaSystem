@@ -8,7 +8,7 @@ export default {
 			url:'/student',
 			method:'post',
 			data: QS.stringify({
-				'sno' : sno,
+				'sno' : sno
 			})
 		})
 	},
@@ -19,7 +19,7 @@ export default {
       method: 'post',
       data: QS.stringify({
         'cno': cno,
-        'sno' :sno,
+        'sno' :sno
       })
     })
   },
