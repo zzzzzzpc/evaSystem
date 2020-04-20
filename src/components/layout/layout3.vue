@@ -21,7 +21,7 @@
 							<i class="el-icon-document-add"></i>
 							<span slot="title">{{index2}}</span>
 						</el-menu-item>
-						<el-menu-item index="navigation3">
+						<el-menu-item index="/">
 							<i class="el-icon-suitcase"></i>
 							<span slot="title">{{index3}}</span>
 						</el-menu-item>

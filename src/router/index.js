@@ -12,6 +12,8 @@ import CourseAdmin from '../views/courseAdmin/courseAdmin.vue'
 import Review from '../components/caFun/review.vue'
 import SpAdmin from '../views/spAdmin/sp.vue'
 import SPFormat from '../components/spFun/spFormat.vue'
+import SPCharts from '../components/spFun/charts.vue'
+import Tutor from '../views/tutor/tutor.vue'
 
 Vue.use(VueRouter)
 
@@ -97,22 +99,45 @@ Vue.use(VueRouter)
        children:[
          {
              path: 'navigation1',
-         		name: 'spFormat',
+         		 name: 'spFormat',
              component: SPFormat,
          },
          {
 
          		path:'navigation2',
-         		name: 'caReview',
-         		component: Review
+         		name: 'spCharts',
+         		component: SPCharts
          },
          {
              path:'navigation3',
-             name: 'caChangeInfo',
+             name: 'spChangeInfo',
              component: ChangeInfo
          }
        ]
       },
+	  {
+	    path:'/tutorInfo',
+	    name:'TutorInfo',
+	    component: Tutor,
+	    children:[
+	      {
+	          path: 'navigation1',
+	      		 name: 'tutorFormat',
+	          component: SPCharts,
+	      },
+	      {
+
+	      		path:'navigation2',
+	      		name: 'tutorChangeInfo',
+	      		component: ChangeInfo
+	      },
+	      // {
+	      //     path:'navigation3',
+	      //     name: 'tutorChangeInfo',
+	      //     component: ChangeInfo
+	      // }
+	    ]
+	   },
 ]
 
 const router = new VueRouter({

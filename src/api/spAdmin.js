@@ -119,6 +119,36 @@ export default {
         cno: courseId
       }
     })
+  },
+
+  //获取所有课程的平均分！
+  getAllCourseAvg(){
+	  return request({
+	    url:'/spGetAllCourseScore',
+	    method:'post',
+	    data:{
+	    }
+	  })
+  },
+
+  //获取每个班级平均的分数
+  getAllClassAvg(){
+    return request({
+      url:'/spGetAllClassScore',
+      method:'post',
+      data:{
+      }
+    })
+  },
+
+  //获取整个年级平均分！！！
+  getAvg(){
+    return request({
+      url:'/spTotalAvg',
+      method:'post',
+      data:{
+      }
+    })
   }
 
 }

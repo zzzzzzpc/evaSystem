@@ -65,8 +65,18 @@
 			if (res.message == 'success'){
               this.$store.state.id = this.user.username
               this.$store.state.role = res.role
-              // this.$router.push({path: '/spAdmin/navigation3'})
-              this.$router.push({path: '/spAdminInfo/navigation3'})
+              this.$store.state.name = res.name
+              if(res.$store.state.role == "辅导员")
+                this.$router.push({path: '/tutorInfo/navigation2'})
+              else if(res.$store.state.role == "老师")
+                this.$router.push({path: '/teacherInfo/navigation3'})
+              else if(res.$store.state.role == "课程负责人")
+                this.$router.push({path: '/courseAdminInfo/navigation3'})
+              else if(res.$store.state.role == "专业负责人")
+                this.$router.push({path: '/spAdminInfo/navigation3'})
+              else
+                this.$router.push({path: '/studentInfo/navigation3'})
+
             }
 				})
 			}
