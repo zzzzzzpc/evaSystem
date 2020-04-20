@@ -66,7 +66,7 @@
               this.$store.state.id = this.user.username
               this.$store.state.role = res.role
               // this.$router.push({path: '/spAdmin/navigation3'})
-              this.$router.push({path: '/studentInfo/navigation3'})
+              this.$router.push({path: '/spAdminInfo/navigation3'})
             }
 				})
 			}

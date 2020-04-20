@@ -3,11 +3,11 @@
   <el-select v-model="value" placeholder="请选择一个毕业要求">
     <el-option
       v-for="item in index"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value">
-      <span style="float: left">{{ item.label }}</span>
-      <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+      :key="item.index_id"
+      :label="item.index_name"
+      :value="item.index_id">
+      <span style="float: left">{{ item.index_name }}</span>
+      <span style="float: right; color: #8492a6; font-size: 13px">{{ item.index_id }}</span>
     </el-option>
   </el-select>
   <p></p>
@@ -20,26 +20,25 @@
       </el-table-column>
       <el-table-column fixed="right" label="移除" width="100">
         <template slot-scope="scope">
-          <el-button @click="" type="danger" icon="el-icon-remove" circle></el-button>
+          <el-button @click="removeIndexDetail(scope.row)" type="danger" icon="el-icon-remove" circle></el-button>
         </template>
       </el-table-column>
     </el-table>
     <p></p>
-    <el-button type="primary" @click="">添加指标点</el-button>
+    <el-button type="primary" @click="outerVisible = true">添加指标点</el-button>
     <div style="text-align: center;margin-top: 20px;">
       <el-pagination background layout="prev, pager, next" :total="total" @current-change="current_change">
       </el-pagination>
-      <el-dialog width="30%" title="添加毕业要求" :visible.sync="outerVisible" append-to-body>
-        <p>输入新的毕业要求的名称</p>
-        <el-input type="textarea" :autosize="{ minRows: 1, maxRows: 10}" v-model="textarea1">
-        </el-input>
+
+      <el-dialog width="30%" title="添加指标点" :visible.sync="outerVisible" append-to-body>
         <div style="margin: 20px 0;"></div>
-        <p>输入新的毕业要求的内容</p>
-        <el-input type="textarea" :autosize="{ minRows: 3, maxRows: 10}" v-model="textarea2">
+        <p>输入新的指标点的内容</p>
+        <el-input type="textarea" :autosize="{ minRows: 3, maxRows: 10}" v-model="textarea">
         </el-input>
         <p></p>
-        <el-button type="primary" @click="">提交</el-button>
+        <el-button type="primary" @click="submitIndexDetail">提交</el-button>
       </el-dialog>
+
     </div>
 
   </div>
@@ -47,12 +46,11 @@
 </template>
 
 <script>
-
+  import SPApi from "../../api/spAdmin.js"
   export default {
     data() {
       return {
-        textarea1:"",
-        textarea2:"",
+        textarea:"",
         total: 0,
         currentPage: 1,
         pagesize: 4,
@@ -60,8 +58,8 @@
         outerVisible: false,
 
         index: [{
-          value: '1',
-          label: '名称'
+          index_id: '1',
+          index_name: '名称'
         }],
         value: ''
       }
@@ -70,12 +68,63 @@
       current_change(currentPage) {
         this.currentPage = currentPage
       },
-      getIndexDetail(){
-        
+      submitIndexDetail(){
+        SPApi.submitIndexDetail(this.value, this.textarea).then(res=>{
+          if(res.message == "success" && this.textarea != ""){
+            this.$notify({
+              title: '成功',
+              message: '指标点已录入！',
+              type: 'success'
+            });
+            SPApi.getIndexDetail(this.value).then(res=>{
+              this.tableData = res.tableData
+            })
+          } else if(this.textarea == ""){
+            this.$notify.error({
+              title: '失败',
+              message: '指标点不能为空',
+            });
+            } else {
+              this.$notify.error({
+                title: '失败',
+                message: '录入失败，请联系管理员',
+              });
+            }
+        })
+      },
+      removeIndexDetail(row){
+        SPApi.removeIndexDetail(this.value, row.index_detail_id).then(res=>{
+          if(res.message == "success") {
+            this.$notify({
+              title: '成功',
+              message:'移除成功',
+              type: 'success'
+            });
+            SPApi.getIndexDetail(this.value).then(res=>{
+              this.tableData = res.tableData
+            })
+          } else {
+            this.$notify.error({
+              title: '失败',
+              message: '移除失败，请联系管理员',
+            });
+          }
+        })
+        }
+      },
+
+    watch:{
+      value(val){
+        SPApi.getIndexDetail(this.value).then(res=>{
+          this.tableData = res.tableData
+        })
       }
     },
-   created(){
-     getIndexDetail()
-   }
+
+    created(){
+      SPApi.getIndex().then(res=>{
+        this.index = res.tableData
+      })
+    }
   }
 </script>
