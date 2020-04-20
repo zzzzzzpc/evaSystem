@@ -3,6 +3,7 @@ export default {
 		return {
 			message : 'success',//失败返回'fail'
       role: '老师',
+      name:'xmj'
       //按照身份返回“学生”，
       //“老师”，“辅导员”，
       //“课程负责人”，“专业负责人”

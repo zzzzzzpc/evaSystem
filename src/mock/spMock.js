@@ -22,8 +22,8 @@ export default {
   'post|/spDetail' : option =>{
     return {
       tableData:[{
-        index_detail_id: '1-1',
-        index_detail_content:'121321'
+        index_detail_id: '1-1',//指标点id
+        index_detail_content:'121321'//指标点内容
       },
       {
         index_detail_id: '1-1',
@@ -87,7 +87,37 @@ export default {
   },
   'post|/spAddCourse': option =>{
     return {
-      message:"success" 
+      message:"success"
+    }
+  },
+  'post|/spGetAllCourseScore':option =>{
+    return {
+      tableData:[{
+        cno:"1",
+        cname:"计算机网络",
+        score:90,
+      },
+      {
+        cno:"2",
+        cname:"数据结构",
+        score:99,
+      }]
+    }
+  },
+
+  'post|/spGetAllClassScore':option => {
+    return {
+      xdata:['2017-1','2017-2','2017-3','2017-4'],//存储年级和班级，格式为年级-班级
+      ydata:['99', '80', '70','100'],//对应班级的分数
+      //例如存储班级2017-1对应的成绩就是99,2017-2对应成绩是80
+      //2017-1的意思说的是2017级1班
+    }
+
+
+  },
+  'post|/spTotalAvg':option =>{
+    return {
+      avg:90//整个年级平均分
     }
   }
 

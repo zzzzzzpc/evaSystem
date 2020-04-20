@@ -44,7 +44,6 @@
     created() {
       this.id = this.$store.state.id
       this.name = this.$store.state.name
-	  console.log("688886"+this.$store.state.name)
     },
     methods: {
       setPwd() {
