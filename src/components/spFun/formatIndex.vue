@@ -87,7 +87,8 @@
         })
       },
       remove(row){
-        SPApi.removeIndex(row.indexId).then(res=>{
+        SPApi.removeIndex(row.index_id).then(res=>{
+			console.log("90"+row.index_id)
           if(res.message == "success") {
             this.$notify({
               title: '成功',

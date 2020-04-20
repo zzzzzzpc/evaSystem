@@ -1,38 +1,48 @@
 <template>
-	<div>
-
-		<div style="display: flex;justify-content: center;margin-top: 150px">
-			<el-card style="width: 400px">
-				<div slot="header" class="clearfix">
-					<span>学生毕业管理系统</span>
-				</div>
-				<table>
-					<tr>
-						<td>用户名</td>
-						<td>
-							<el-input v-model="user.username" placeholder="请输入学号/工号"></el-input>
-						</td>
-					</tr>
-					<tr>
-						<td>密码</td>
-						<td>
-							<el-input type="password" v-model="user.password" placeholder="请输入密码" @keydown.enter.native="doLogin"></el-input>
-							<!-- @keydown.enter.native="doLogin"当按下enter键的时候也会执行doLogin方法-->
-						</td>
-					</tr>
-					<tr>
-						<!-- 占两行-->
-						<td colspan="2">
-							<!-- 点击事件的两种不同的写法v-on:click和 @click-->
-							<!--<el-button style="width: 300px" type="primary" v-on:click="doLogin">登录</el-button>-->
-							<el-button style="width: 300px" type="primary" @click="doLogin">登录</el-button>
-						</td>
-					</tr>
-				</table>
-			</el-card>
-		</div>
-
-
+	<div style="display: flex;justify-content: center;margin-top: 150px;text-align: center;">
+		<el-card style="width: 400px">
+			<div slot="header" class="clearfix">
+				<h3>学生毕业管理系统</h3>
+			</div>
+			<!-- <table>
+				<tr>
+					<td>用户名</td>
+					<td>
+						<el-input v-model="user.username" placeholder="请输入学号/工号"></el-input>
+					</td>
+				</tr>
+				<tr>
+					<td>密码</td>
+					<td>
+						<el-input type="password" v-model="user.password" placeholder="请输入密码" @keydown.enter.native="doLogin"></el-input> -->
+						<!-- @keydown.enter.native="doLogin"当按下enter键的时候也会执行doLogin方法-->
+					<!-- </td>
+				</tr>
+				<tr> -->
+					<!-- 占两行-->
+					<!-- <td colspan="2"> -->
+						<!-- 点击事件的两种不同的写法v-on:click和 @click-->
+						<!--<el-button style="width: 300px" type="primary" v-on:click="doLogin">登录</el-button>-->
+						<!-- <el-button style="width: 300px" type="primary" @click="doLogin">登录</el-button>
+					</td>
+				</tr>
+			</table> -->
+			<!-- <el-form-item label="用户名:"> -->
+			<el-row>
+				<el-col :span="5"><p class="p1">用户名:</p></el-col>
+				<el-col :span="16">
+					<el-input class="sno" v-model="user.username" placeholder="请输入学号/工号"></el-input>
+				</el-col>
+			</el-row>
+			<el-row>
+				<el-col :span="5"><p class="p1">密码:</p></el-col>
+				<el-col :span="16">
+					<el-input type="password" v-model="user.password" placeholder="请输入密码" @keydown.enter.native="doLogin"></el-input>
+				</el-col>
+			</el-row>
+			
+			<el-button style="width: 180px;" type="primary" @click="doLogin">登录</el-button>
+		</el-card>
 	</div>
 </template>
 
@@ -62,25 +72,34 @@
 			doLogin() { //一点击登录按钮，这个方法就会执行
 				// alert(JSON.stringify(this.user)) //可以直接把this.user对象传给后端进行校验用户名和密码
 				login.login(this.user.username, this.user.password).then(res => {
-			if (res.message == 'success'){
-              this.$store.state.id = this.user.username
-              this.$store.state.role = res.role
-              this.$store.state.name = res.name
-              if(res.$store.state.role == "辅导员")
-                this.$router.push({path: '/tutorInfo/navigation2'})
-              else if(res.$store.state.role == "老师")
-                this.$router.push({path: '/teacherInfo/navigation3'})
-              else if(res.$store.state.role == "课程负责人")
-                this.$router.push({path: '/courseAdminInfo/navigation3'})
-              else if(res.$store.state.role == "专业负责人")
-                this.$router.push({path: '/spAdminInfo/navigation3'})
-              else
-                this.$router.push({path: '/studentInfo/navigation3'})
+					if (res.message == 'success'){
+					  this.$store.state.id = this.user.username
+					  this.$store.state.role = res.role
+					  this.$store.state.name = res.name
+					  console.log("34343"+this.$store.state.role)
+					  if(this.$store.state.role == "辅导员")
+						this.$router.push({path: '/tutorInfo/navigation2'})
+					  else if(this.$store.state.role == "教师")
+						this.$router.push({path: '/teacherInfo/navigation3'})
+					  else if(this.$store.state.role == "课程负责人")
+						this.$router.push({path: '/courseAdminInfo/navigation3'})
+					  else if(this.$store.state.role == "专业负责人")
+						this.$router.push({path: '/spAdminInfo/navigation3'})
+					  else
+						this.$router.push({path: '/studentInfo/navigation3'})
 
-            }
+					}
+					else
+						alert("登录失败！");
 				})
 			}
 		},
 
 	}
 </script>
+
+<style>
+	.el-button{
+		text-align: center;
+	}
+</style>

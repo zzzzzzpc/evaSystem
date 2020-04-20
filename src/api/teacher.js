@@ -46,6 +46,7 @@ export default {
   },
   //上传老师给指标点的分值
   postIndexDetailScore(cno, sno, index_detail_id, score) {
+		console.log("asas"+sno)
     return request({
       url: domain+'teaCourseIndexDetailScore/',
       method: 'post',

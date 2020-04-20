@@ -98,6 +98,7 @@
         })
       },
       showStudIndex(row) {
+		  
         this.innerTitleInfo = "【" + row.sname + "】" + "在【" + this.pageCname + "】的成绩"
         this.innerVisible_info = true
         TeacherApi.getIndexDetailScore(this.pageTag, row.sno).then(res => {
@@ -107,6 +108,8 @@
       },
 
       editStu(row) {
+		  console.log("34333333"+row.sno)
+		  this.pageSno = row.sno
         if (row.roll_state == "审核完成") {
           this.$notify.error({
             title: '错误',
@@ -125,7 +128,8 @@
       commit() {
         TeacherApi.postIndexDetailScore(this.pageTag, this.pageSno, this.value, this.score).then(res => {
 
-          if (res.status == 200) {
+          // if (res.status == 200) {
+		if (res.message == "success") {
             this.$notify({
               title: '成功',
               message: '分值已经录入系统',
@@ -161,6 +165,7 @@
         pageTag: '', //课程号
         pageCname: '',
         pageSname: '',
+		pageSno:'',
         stuData: [],
 
         options: [{
