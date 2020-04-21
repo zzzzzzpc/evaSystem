@@ -4,30 +4,6 @@
 			<div slot="header" class="clearfix">
 				<h3>学生毕业管理系统</h3>
 			</div>
-			<!-- <table>
-				<tr>
-					<td>用户名</td>
-					<td>
-						<el-input v-model="user.username" placeholder="请输入学号/工号"></el-input>
-					</td>
-				</tr>
-				<tr>
-					<td>密码</td>
-					<td>
-						<el-input type="password" v-model="user.password" placeholder="请输入密码" @keydown.enter.native="doLogin"></el-input> -->
-						<!-- @keydown.enter.native="doLogin"当按下enter键的时候也会执行doLogin方法-->
-					<!-- </td>
-				</tr>
-				<tr> -->
-					<!-- 占两行-->
-					<!-- <td colspan="2"> -->
-						<!-- 点击事件的两种不同的写法v-on:click和 @click-->
-						<!--<el-button style="width: 300px" type="primary" v-on:click="doLogin">登录</el-button>-->
-						<!-- <el-button style="width: 300px" type="primary" @click="doLogin">登录</el-button>
-					</td>
-				</tr>
-			</table> -->
-			<!-- <el-form-item label="用户名:"> -->
 			<el-row>
 				<el-col :span="5"><p class="p1">用户名:</p></el-col>
 				<el-col :span="16">
