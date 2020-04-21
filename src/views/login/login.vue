@@ -78,15 +78,15 @@
 					  this.$store.state.name = res.name
 					  console.log("34343"+this.$store.state.role)
 					  if(this.$store.state.role == "辅导员")
-						this.$router.push({path: '/tutorInfo/navigation2'})
+              this.$router.push({path: '/tutorInfo/navigation2'})
 					  else if(this.$store.state.role == "教师")
-						this.$router.push({path: '/teacherInfo/navigation3'})
+              this.$router.push({path: '/teacherInfo/navigation3'})
 					  else if(this.$store.state.role == "课程负责人")
-						this.$router.push({path: '/courseAdminInfo/navigation3'})
+              this.$router.push({path: '/courseAdminInfo/navigation3'})
 					  else if(this.$store.state.role == "专业负责人")
-						this.$router.push({path: '/spAdminInfo/navigation3'})
+              this.$router.push({path: '/spAdminInfo/navigation3'})
 					  else
-						this.$router.push({path: '/studentInfo/navigation3'})
+              this.$router.push({path: '/studentInfo/navigation3'})
 
 					}
 					else
