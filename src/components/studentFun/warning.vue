@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="center">
     <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
       <el-table-column prop="cno" label="课程号" sortable width="180" column-key="courseId">
       </el-table-column>

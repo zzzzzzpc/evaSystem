@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="center">
     <el-card class="box-card">
       <el-timeline class="text item">
         <el-timeline-item v-for="(activity, index) in activities" :key="index" :icon="activity.icon" :type="activity.type"
           :color="activity.color" :size="activity.size" :timestamp="activity.timestamp">
           {{activity.content}}
-        </el-timeline-item> 
+        </el-timeline-item>
       </el-timeline>
       <el-button type="success" @click="last">上一步</el-button>
       <el-button type="success" @click="next">下一步</el-button>

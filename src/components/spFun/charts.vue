@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="center">
    <div class="transition-box" style="background-color: #CC5A5A;">课程平均分</div>
 
    <p></p>
