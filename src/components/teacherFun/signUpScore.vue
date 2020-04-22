@@ -39,7 +39,7 @@
       </el-table>
       <p></p>
       <el-dialog width="30%" :title="innerTitleInfo" :visible.sync="innerVisible_info" append-to-body>
-        <p>课程达成度：{{courseScore}}</p>
+
         <el-table :data="indexDetailData" style="width: 100%">
           <el-table-column prop="index_detail_id" label="指标点id" width="180">
           </el-table-column>

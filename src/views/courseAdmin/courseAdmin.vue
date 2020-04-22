@@ -26,18 +26,8 @@
 			CALayout
 		},
 		methods: {
-			getInfo() {
-				TeacherApi.getInfo(this.$store.state.id).then(res => {
-          this.$store.state.name = res.tname
-					this.name = res.tname
-					this.id = this.$store.state.id
-          this.$store.state.role = '课程负责人'
-					this.role = this.$store.state.role
-				})
-			}
 		},
 		created() {
-			this.getInfo()
 		},
 
 	}

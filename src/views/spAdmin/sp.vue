@@ -14,7 +14,7 @@
 			return {
 				name: "",
 				id: "",
-        role:"",
+				role:"",
 				index1: "格式化培养方案",
 				index2: "成绩数据分析",
 				index3: "修改个人信息",
@@ -36,6 +36,7 @@
 			// }
 		},
 		created() {
+
 			// this.getInfo()
 		},
 

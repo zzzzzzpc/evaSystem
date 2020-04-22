@@ -176,12 +176,15 @@ export default {
 
   },
   created() {
+
     SPApi.getAvg().then(res=>{
 
       this.percentage = res.avg
     })
   },
   mounted(){
+	  this.drawLine(['1','2','3'], ['99','45','20'])
+	  this.drawLine2()
     SPApi.getAllCourseAvg().then(res=>{
       this.tableData = res.tableData
     })

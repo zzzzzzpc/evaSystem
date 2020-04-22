@@ -44,6 +44,7 @@
     created() {
       this.id = this.$store.state.id
       this.name = this.$store.state.name
+
     },
     methods: {
       setPwd() {

@@ -51,6 +51,7 @@
 </template>
 
 <script>
+  import CAApi from '../../api/courseAdmin.js'
   import TeacherApi from '../../api/teacher.js'
   export default {
     data() {
@@ -93,7 +94,7 @@
         this.currentPage = currentPage
       },
       getCourseInfo() {
-        TeacherApi.getCourseInfo(this.$store.state.id).then(res => {
+        CAApi.getCourseInfo(this.$store.state.id).then(res => {
           this.total = (Math.ceil(res.total / this.pagesize)) * 10
           this.tableData = res.tableData
 
@@ -102,7 +103,7 @@
       showDetail(row) {
         this.pageTag = row.cno
         this.dialogTableVisible = true
-        TeacherApi.getCourseDetail(row.cno).then(res => {
+        CAApi.getCourseDetail(row.cno).then(res => {
 
           this.gridData = [{
             cname: res.tableData[0].cname,

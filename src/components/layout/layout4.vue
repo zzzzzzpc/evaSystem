@@ -61,6 +61,9 @@
 				console.log(key, keyPath);
 			}
 		},
+		created() {
+			this.role = this.$store.state.role
+		}
 	}
 </script>
 

@@ -25,15 +25,15 @@
 			StuLayout
 		},
 		methods: {
-			getInfo() {
-				StudentApi.getInfo(this.$store.state.id).then(res => {
-					this.$store.state.name = res.sname
-					this.name = res.sname
-					this.id = this.$store.state.id
-					this.$store.state.role = '学生'
-					this.role = this.$store.state.role
-				})
-			}
+			// getInfo() {
+			// 	StudentApi.getInfo(this.$store.state.id).then(res => {
+			// 		this.$store.state.name = res.sname
+			// 		this.name = res.sname
+			// 		this.id = this.$store.state.id
+			// 		this.$store.state.role = '学生'
+			// 		this.role = this.$store.state.role
+			// 	})
+			// }
 		},
 		created() {
 			this.getInfo()

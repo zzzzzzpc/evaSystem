@@ -14,6 +14,7 @@ import SpAdmin from '../views/spAdmin/sp.vue'
 import SPFormat from '../components/spFun/spFormat.vue'
 import SPCharts from '../components/spFun/charts.vue'
 import Tutor from '../views/tutor/tutor.vue'
+import caCourseInfo from '../components/caFun/courseInfo.vue'
 
 Vue.use(VueRouter)
 
@@ -77,7 +78,7 @@ Vue.use(VueRouter)
         {
             path: 'navigation1',
         		name: 'caCourseInfo',
-            component: teaCourseInfo
+            component: caCourseInfo
         },
         {
 

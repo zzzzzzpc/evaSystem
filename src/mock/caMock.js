@@ -53,43 +53,53 @@ export default {
       }],
     };
   },
-  'post|/caCourseStu': option => {
+  'post|/caCourseClass': option => {
     return {
       tableData: [{
-        /*这里roll_state指的是课程的登记状态，
-        * 如果这门课的成绩登记完成了（数据库中有课程达成度值）
-        * 但是这门课的审核状态为没有审核
-        * 那么返回一个**登记完成**
-        * 如果审核也通过了，那么返回一个**审核完成**
-        * 如果数据库中没有课程达成的值，那么返回登记缺失
-        */
-          sno: "2017119075",
-          sname: '赵鹏程',
+
+          classno: "2017-1",//班级号
           roll_state: '登记完成',
         },
         {
-          sno: "2017119074",
-          sname: '赵小程',
+          classno: "2017-2",
           roll_state: '审核完成'
 
         },
         {
-          sno: "2017119073",
-          sname: '赵大程',
+          classno: "2017-3",
           roll_state: '登记缺失'
         },
         {
-          sno: "2017119079",
-          sname: '赵晓程',
+          classno: "2017-4",
           roll_state: '登记缺失'
         }
       ]
     }
   },
-  
+
   'post|/caCourseState' :option => {
     return {
       message:"success" //修改成功就是success否则返回fail
     }
+  },
+
+  'post|/caCourseReview' :option =>{
+    return {
+      total:1,
+      tableData:[{
+        sname:"肖梦杰",
+        sno:'123',
+        index_detail_id:'1',
+        index_detail_score:99,
+      },
+      {
+        sname:"赵鹏程",
+        sno:'456',
+        index_detail_id:'1',
+        index_detail_score:100,
+      },
+      ]
+    }
+
   }
 }

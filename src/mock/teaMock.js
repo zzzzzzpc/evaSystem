@@ -1,5 +1,3 @@
-
-
 export default {
   'post|/teacher': option => {
     return {
@@ -111,7 +109,6 @@ export default {
   },
   'post|/teaIndexDetailScore' : option => {
     return {
-      course_score: 90,//这个学生这门课的课程达成度
       indexDetailData: [{
         index_detail_id:"1-1",//指标点编号
         score:"3"//指标点的具体值

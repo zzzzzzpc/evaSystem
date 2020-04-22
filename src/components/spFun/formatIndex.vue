@@ -1,6 +1,14 @@
 <template>
   <div>
+  <p>一键导入excel格式化毕业要求</p>
+  <form action="http://148.70.15.23:8000/indexTemplate/" method="post" enctype="multipart/form-data" target="view_window">
+    <input type='file' name='textfield' id='textfield'>
+    <input type="submit" name="submit" value="上传">
+  </form>
 
+  <p/>
+  <a href="http://148.70.15.23:8000/download1/" download="http://148.70.15.23:8000/download1/" target="view_window">点击下载毕业要求模板</a>
+  <p/>
     <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
       <el-table-column prop="index_id" label="毕业要求id" sortable width="180" column-key="courseId">
       </el-table-column>
@@ -47,7 +55,8 @@
         outerVisible: false,
 
         textarea1:'',
-        textarea2:''
+        textarea2:'',
+
       }
     },
     methods: {
