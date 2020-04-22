@@ -80,6 +80,7 @@ body>.el-container {
     top: 0;
     left: 0;
     right: 0;
+	z-index: 3;
   }
   .header__content {
     display: -webkit-flex;
