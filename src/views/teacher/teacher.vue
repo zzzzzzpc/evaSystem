@@ -45,34 +45,5 @@
 	}
 </script>
 <style>
-  .center {
-    position: relative;
-    margin:0 auto;
-    padding: 20px;
-    top: 100px;
-    border: 1px solid rgba(133,153,171,0.2);
-    -webkit-box-shadow: 0 2px 26px 0 rgba(133,153,171,0.1);
-    box-shadow: 0 2px 26px 0 rgba(133,153,171,0.1);
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    background-color: #fff;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -moz-box-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -webkit-align-items: flex-start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    width: 900px;
-    text-align:center;
-    background-color: beige;
-  }
+  
 </style>
