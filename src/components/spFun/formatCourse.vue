@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <div style="margin: 0 auto;">
   <p>一键导入excel分配课程指标点</p>
   <form action="http://148.70.15.23:8000/courseTemplate/" method="post" enctype="multipart/form-data" target="view_window">
     <input type='file' name='textfield' id='textfield' />
     <input type="submit" name="submit" value="上传" />
   </form>
-  <p/>
+
+  <p>
   <a href="http://148.70.15.23:8000/download2/" download="http://148.70.15.23:8000/download2/" target="view_window">点击下载课程模板</a>
   <p/>
     <el-select v-model="value" placeholder="请选择一个指标点">
