@@ -1,6 +1,6 @@
 <template>
 	<el-container class="homeWrap">
-		<el-header >
+		<el-header>
       <p style="font-family:PingFang SC;">西北大学毕业管理系统
       <el-tag type="primary" style="margin-left:10px;">{{role}}端</el-tag>
       </p>

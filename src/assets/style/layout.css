@@ -1,14 +1,15 @@
 .el-header,
 .el-footer {
-	background-color: #304156;
+	background-color: #03298E;
 	color: #FFFFFF;
 	text-align: left;
 	line-height: 30px;
 }
 
 .el-aside {
-	background-color: #304156;
-	color: #333;
+	/* background-color: #304156;*/
+	background-color: #1B43B9;
+	/* color: #333; */
 	text-align: center;
 	line-height: 200px;
 }

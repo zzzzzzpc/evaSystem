@@ -1,18 +1,18 @@
 <template>
-  <div>
+  <div class="center">
     <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
-      <el-table-column prop="cno" label="课程号" sortable width="180" column-key="courseId">
+      <el-table-column prop="cno" label="课程号" sortable column-key="courseId">
       </el-table-column>
-      <el-table-column prop="cname" label="课程名" width="180">
+      <el-table-column prop="cname" label="课程名">
       </el-table-column>
-      <el-table-column fixed="right" label="操作" width="100">
+      <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
           <el-button type="success" icon="el-icon-edit" circle @click="showStu(scope.row)"></el-button>
         </template>
       </el-table-column>
     </el-table>
     <p></p>
-    <div style="text-align: center;margin-top: 30px;">
+    <div style="margin: 0 auto;margin-top: 30px;">
       <el-pagination background layout="prev, pager, next" :total="total" @current-change="current_change">
       </el-pagination>
     </div>
@@ -98,7 +98,7 @@
         })
       },
       showStudIndex(row) {
-		  
+
         this.innerTitleInfo = "【" + row.sname + "】" + "在【" + this.pageCname + "】的成绩"
         this.innerVisible_info = true
         TeacherApi.getIndexDetailScore(this.pageTag, row.sno).then(res => {
