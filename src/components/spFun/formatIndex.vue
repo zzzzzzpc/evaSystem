@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin: 0 auto;">
   <p>一键导入excel格式化毕业要求</p>
   <form action="http://148.70.15.23:8000/indexTemplate/" method="post" enctype="multipart/form-data" target="view_window">
     <input type='file' name='textfield' id='textfield'>
@@ -10,13 +10,13 @@
   <a href="http://148.70.15.23:8000/download1/" download="http://148.70.15.23:8000/download1/" target="view_window">点击下载毕业要求模板</a>
   <p/>
     <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
-      <el-table-column prop="index_id" label="毕业要求id" sortable width="180" column-key="courseId">
+      <el-table-column prop="index_id" label="毕业要求id" sortable column-key="courseId">
       </el-table-column>
-      <el-table-column prop="index_name" label="毕业要求名" width="180">
+      <el-table-column prop="index_name" label="毕业要求名">
       </el-table-column>
-      <el-table-column prop="index_content" label="毕业要求内容" width="180">
+      <el-table-column prop="index_content" label="毕业要求内容" width="600">
       </el-table-column>
-      <el-table-column fixed="right" label="移除" width="100">
+      <el-table-column fixed="right" label="移除">
         <template slot-scope="scope">
           <el-button @click="remove(scope.row)" type="danger" icon="el-icon-remove" circle></el-button>
         </template>
