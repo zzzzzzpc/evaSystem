@@ -26,17 +26,17 @@
 			TeaLayout
 		},
 		methods: {
-			// getInfo() {
-			// 	TeacherApi.getInfo(this.$store.state.id).then(res => {
-			// 		console.log("45454"+res)
-			// 		console.log("45454"+res.tname)
-			// 		this.$store.state.name = res.tname
-			// 		this.name = res.tname
-			// 		this.id = this.$store.state.id
-			// 		this.$store.state.role = '老师'
-			// 		this.role = this.$store.state.role
-			// 	})
-			// }
+			getInfo() {
+				TeacherApi.getInfo(this.$store.state.id).then(res => {
+					console.log("45454"+res)
+					console.log("45454"+res.tname)
+					this.$store.state.name = res.tname
+					this.name = res.tname
+					this.id = this.$store.state.id
+					this.$store.state.role = '老师'
+					this.role = this.$store.state.role
+				})
+			}
 		},
 		created() {
 			this.getInfo()
@@ -45,4 +45,5 @@
 	}
 </script>
 <style>
+  
 </style>

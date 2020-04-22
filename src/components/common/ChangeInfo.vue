@@ -1,22 +1,11 @@
 <template>
-  <div position:abosolute>
-
+  <div class="center">
     <el-card class="box-card">
-      <div>
-        <el-image style="width: 100px; height: 100px" :src="url"></el-image>
-      </div>
-      <div class="text item">
-        <p>姓名：{{name}}</p>
-      </div>
-      <div class="text item">
-        <p>ID：{{id}}</p>
-      </div>
-      <div class="text item">
-        <p>学院：信息科学与技术学院</p>
-      </div>
-      <div class="text item">
-        <p>所在专业：软件工程</p>
-      </div>
+      <img style="width: 100px; height: 100px" src="../../assets/img/user_black.png" />
+      <p>姓名：{{name}}</p>
+      <p>ID：{{id}}</p>
+      <p>学院：信息科学与技术学院</p>
+      <p>所在专业：软件工程</p>
       <el-button @click="setPasswordShow = true" type="danger">修改密码</el-button>
     </el-card>
     <el-dialog width="30%" title="修改密码" :visible.sync="setPasswordShow" append-to-body>
@@ -34,7 +23,6 @@
   export default {
     data: () => ({
       show: true,
-      url: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
       id: '',
       name: '',
       setPasswordShow: false,
@@ -77,20 +65,12 @@
     background-color: #409EFF;
     text-align: center;
     color: #fff;
-    padding: 40px 20px;
+    padding: 20px 10px;
     box-sizing: border-box;
     margin-right: 20px;
   }
 
-  .text {
-    font-size: 14px;
-  }
-
-  .item {
-    padding: 18px 0;
-  }
-
   .box-card {
-    width: 480px;
+    margin: 0 auto;
   }
 </style>
