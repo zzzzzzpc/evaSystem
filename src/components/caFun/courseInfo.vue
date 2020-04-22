@@ -5,12 +5,9 @@
       </el-table-column>
       <el-table-column prop="cname" label="课程名">
       </el-table-column>
-
       <el-table-column prop="credit" label="课程学分">
       </el-table-column>
-      </el-table-column>
       <el-table-column prop="ca_name" label="课程负责人">
-      </el-table-column>
       </el-table-column>
       <el-table-column prop="tperiod" label="课时">
       </el-table-column>
