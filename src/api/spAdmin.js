@@ -127,7 +127,7 @@ export default {
   //获取所有课程的平均分！
   getAllCourseAvg(){
 	  return request({
-	    url:'/spGetAllCourseScore',
+	    url: domain+'spGetAllCourseScore/',
 	    method:'post',
 	    data:{
 	    }
@@ -137,7 +137,7 @@ export default {
   //获取每个班级平均的分数
   getAllClassAvg(){
     return request({
-      url:'/spGetAllClassScore',
+      url:domain+'spGetAllClassScore/',
       method:'post',
       data:{
       }
@@ -147,7 +147,7 @@ export default {
   //获取整个年级平均分！！！
   getAvg(){
     return request({
-      url:'/spTotalAvg',
+      url:domain+'spTotalAvg/',
       method:'post',
       data:{
       }

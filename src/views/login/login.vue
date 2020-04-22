@@ -1,41 +1,17 @@
 <template>
 	<div style="display: flex;justify-content: center;margin-top: 150px;text-align: center;">
-		<el-card style="width: 400px">
+		<el-card style="width: 400px;background-color: rgba(255,255,255,0.9);">
 			<div slot="header" class="clearfix">
-				<h3>学生毕业管理系统</h3>
+				<h2>学生毕业管理系统</h2>
 			</div>
-			<!-- <table>
-				<tr>
-					<td>用户名</td>
-					<td>
-						<el-input v-model="user.username" placeholder="请输入学号/工号"></el-input>
-					</td>
-				</tr>
-				<tr>
-					<td>密码</td>
-					<td>
-						<el-input type="password" v-model="user.password" placeholder="请输入密码" @keydown.enter.native="doLogin"></el-input> -->
-						<!-- @keydown.enter.native="doLogin"当按下enter键的时候也会执行doLogin方法-->
-					<!-- </td>
-				</tr>
-				<tr> -->
-					<!-- 占两行-->
-					<!-- <td colspan="2"> -->
-						<!-- 点击事件的两种不同的写法v-on:click和 @click-->
-						<!--<el-button style="width: 300px" type="primary" v-on:click="doLogin">登录</el-button>-->
-						<!-- <el-button style="width: 300px" type="primary" @click="doLogin">登录</el-button>
-					</td>
-				</tr>
-			</table> -->
-			<!-- <el-form-item label="用户名:"> -->
 			<el-row>
-				<el-col :span="5"><p class="p1">用户名:</p></el-col>
+				<el-col :span="5"><i class="el-icon-user">用户名:</i></el-col>
 				<el-col :span="16">
 					<el-input class="sno" v-model="user.username" placeholder="请输入学号/工号"></el-input>
 				</el-col>
 			</el-row>
 			<el-row>
-				<el-col :span="5"><p class="p1">密码:</p></el-col>
+				<el-col :span="5"><i class="el-icon-lock">密码:</i></el-col>
 				<el-col :span="16">
 					<el-input type="password" v-model="user.password" placeholder="请输入密码" @keydown.enter.native="doLogin"></el-input>
 				</el-col>
@@ -94,12 +70,36 @@
 				})
 			}
 		},
+		// 组件内路由--进入组件时
+		beforeRouteEnter(to, form, next){
+			window.document.body.className="login_body"
+			next();
+		},
+		beforeRouteLeave(to, form, next){
+			window.document.body.className="";
+			next();
+		}
 
 	}
 </script>
 
 <style>
-	.el-button{
-		text-align: center;
+	.el-col i{
+		margin-top: 10px;
+	}
+	.el-row{
+		margin-bottom: 20px;
+	}
+	.login_body {
+		background-image: url('../../assets/img/mainBg.jpg');
+		filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../assets/img/mainBg.jpg', sizingMethod='scale');
+		background-position: right bottom;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+		background-size: cover;
+	
 	}
 </style>
