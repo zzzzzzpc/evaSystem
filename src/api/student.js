@@ -2,6 +2,7 @@ import request from '../utils/request.js'
 import QS from 'qs'
 
 let domain = "http://148.70.15.23:8000/"
+// let domain = "/"
 
 export default {
   //获取学生姓名

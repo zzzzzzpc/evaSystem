@@ -48,12 +48,13 @@ export default {
       tableData:[{
         cno:'1123',
         cname:'数据结构',
+        weight:0.1
       },
       {
         cno:'12123',
         cname:'数据结构',
+        weight:0.2
       }]
-
   }
   },
   'post|/spAllIndexDetail': option =>{

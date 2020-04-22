@@ -78,6 +78,7 @@
             });
             SPApi.getIndexDetail(this.value).then(res=>{
               this.tableData = res.tableData
+              this.total = (Math.ceil(this.tableData.length / this.pagesize)) * 10
             })
           } else if(this.textarea == ""){
             this.$notify.error({
@@ -102,6 +103,7 @@
             });
             SPApi.getIndexDetail(this.value).then(res=>{
               this.tableData = res.tableData
+              this.total = (Math.ceil(this.tableData.length / this.pagesize)) * 10
             })
           } else {
             this.$notify.error({
@@ -117,6 +119,7 @@
       value(val){
         SPApi.getIndexDetail(this.value).then(res=>{
           this.tableData = res.tableData
+          this.total = (Math.ceil(this.tableData.length / this.pagesize)) * 10
         })
       }
     },

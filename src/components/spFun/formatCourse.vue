@@ -7,6 +7,7 @@
   </form>
   <p/>
   <a href="http://148.70.15.23:8000/download2/" download="http://148.70.15.23:8000/download2/" target="view_window">点击下载课程模板</a>
+  <a href="http://148.70.15.23:8000/downloadCourse/" download="http://148.70.15.23:8000/download1/" target="view_window">导出数据</a>
   <p/>
     <el-select v-model="value" placeholder="请选择一个指标点">
       <el-option v-for="item in index" :key="item.index_detail_id" :value="item.index_detail_id">
@@ -39,6 +40,8 @@
         <el-table-column prop="cno" label="课程id" sortable width="180" column-key="courseId">
         </el-table-column>
         <el-table-column prop="cname" label="课程名" width="180">
+        </el-table-column>
+        <el-table-column prop="weight" label="权重" width="180">
         </el-table-column>
         <el-table-column fixed="right" label="添加" width="100">
           <template slot-scope="scope">
@@ -99,6 +102,7 @@
             });
             SPApi.getCourse(this.value).then(res => {
               this.tableData = res.tableData
+              this.total = (Math.ceil(this.gridData.length / this.pagesize)) * 10
             })
           } else {
             this.$notify.error({
@@ -113,6 +117,7 @@
        this.outerVisible = true
         SPApi.showCourse(this.value).then(res=>{
           this.gridData = res.tableData
+          this.total1 = (Math.ceil(this.gridData.length / this.pagesize1)) * 10
         })
      },
      addCourse(row) {
@@ -125,9 +130,11 @@
            });
            SPApi.showCourse(this.value).then(res=>{
              this.gridData = res.tableData
+             this.total1 = (Math.ceil(this.gridData.length / this.pagesize1)) * 10
            });
            SPApi.getCourse(this.value).then(res => {
              this.tableData = res.tableData
+             this.total = (Math.ceil(this.tableData.length / this.pagesize)) * 10
            });
          } else {
            this.$notify.error({
@@ -144,6 +151,7 @@
       value(val) {
         SPApi.getCourse(this.value).then(res => {
           this.tableData = res.tableData
+          this.total = (Math.ceil(this.tableData.length / this.pagesize)) * 10
         })
       }
     },

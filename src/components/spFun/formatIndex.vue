@@ -8,6 +8,7 @@
 
   <p/>
   <a href="http://148.70.15.23:8000/download1/" download="http://148.70.15.23:8000/download1/" target="view_window">点击下载毕业要求模板</a>
+  <a href="http://148.70.15.23:8000/downloadIndex/" download="http://148.70.15.23:8000/download1/" target="view_window">导出数据</a>
   <p/>
     <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
       <el-table-column prop="index_id" label="毕业要求id" sortable width="180" column-key="courseId">
@@ -66,6 +67,7 @@
       getIndex() {
         SPApi.getIndex().then(res => {
           this.tableData = res.tableData
+          this.total = (Math.ceil(this.tableData.length / this.pagesize)) * 10
         })
       },
       addIndex() {

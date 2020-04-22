@@ -63,7 +63,6 @@
       getCourseInfo() {
         StudentApi.getCourseWarningStu(this.$store.state.id).then(res => {
           this.total = (Math.ceil(res.total / this.pagesize)) * 10
-          // alert(res.tableData[0].warning)
           this.tableData = res.tableData
         })
       },
