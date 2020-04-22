@@ -1,6 +1,5 @@
 <template>
   <div position:abosolute>
-
     <el-card class="box-card">
       <div>
         <el-image style="width: 100px; height: 100px" :src="url"></el-image>

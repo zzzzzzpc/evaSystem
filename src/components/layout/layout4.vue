@@ -2,7 +2,7 @@
 	<el-container class="homeWrap">
 		<el-header >
       <p style="font-family:PingFang SC">西北大学毕业管理系统
-      <el-tag type="primary">{{role}}端</el-tag>
+      <el-tag type="primary" style="margin-left:10px;">{{role}}端</el-tag>
       </p>
 
 			<!-- <i class="el-icon-user-solid"></i>
