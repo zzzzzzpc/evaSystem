@@ -1,13 +1,12 @@
 <template>
-  <div>
+  <div class="center">
     <div class="transition-box" style="background-color: #CC5A5A;">个人评价达成度：{{indiv_score}}</div>
-
     <hr/>
     <div class="transition-box">指标点评价达成度</div>
     <el-table ref="filterTable" :data="indexTableData.slice((currentPageIndex-1) * pagesize, currentPageIndex * pagesize)" style="width: 100%">
-      <el-table-column prop="index_detail_id" label="指标点序号" sortable width="180" column-key="courseId">
+      <el-table-column prop="index_detail_id" label="指标点序号" sortable column-key="courseId">
       </el-table-column>
-      <el-table-column prop="index_detail_content" label="指标点内容" width="180">
+      <el-table-column prop="index_detail_content" label="指标点内容">
       </el-table-column>
 
       <el-table-column prop="score" label="指标点分数" width="100">
@@ -15,7 +14,7 @@
       </el-table-column>
     </el-table>
     <p></p>
-    <div style="text-align: center;margin-top: 30px;">
+    <div style="margin: 0 auto;margin-top: 30px;">
       <el-pagination background layout="prev, pager, next" :total="total_index" @current-change="current_change_index">
       </el-pagination>
     </div>
@@ -49,7 +48,7 @@
       </el-table-column>
     </el-table>
     <p></p>
-    <div style="text-align: center;margin-top: 30px;">
+    <div style="margin: 0 auto;margin-top: 30px;">
       <el-pagination background layout="prev, pager, next" :total="total" @current-change="current_change">
       </el-pagination>
     </div>
@@ -146,3 +145,17 @@
 
   }
 </script>
+
+<style>
+  .transition-box {
+    margin-bottom: 10px;
+    width: 200px;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #409EFF;
+    text-align: center;
+    color: #fff;
+    padding-top: 15px;
+    box-sizing: border-box;
+  }
+</style>

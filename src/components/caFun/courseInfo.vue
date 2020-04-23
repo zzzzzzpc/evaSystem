@@ -1,18 +1,15 @@
 <template>
-  <div>
+  <div class="center">
     <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
-      <el-table-column prop="cno" label="课程号" sortable width="180" column-key="courseId">
+      <el-table-column prop="cno" label="课程号" sortable column-key="courseId">
       </el-table-column>
-      <el-table-column prop="cname" label="课程名" width="180">
+      <el-table-column prop="cname" label="课程名">
       </el-table-column>
-
-      <el-table-column prop="credit" label="课程学分" width="100">
+      <el-table-column prop="credit" label="课程学分">
       </el-table-column>
+      <el-table-column prop="ca_name" label="课程负责人">
       </el-table-column>
-      <el-table-column prop="ca_name" label="课程负责人" width="100">
-      </el-table-column>
-      </el-table-column>
-      <el-table-column prop="tperiod" label="课时" width="100">
+      <el-table-column prop="tperiod" label="课时">
       </el-table-column>
       <el-table-column prop="nature" label="课程类型" :formatter="formatter" :filters="[{text: '必修课程', value: '必修课程'}, {text: '选修课程', value: '选修课程'}]"
         :filter-method="filterTag" filter-placement="bottom-end">
@@ -20,14 +17,14 @@
           <el-tag :type="scope.row.nature == '必修课程' ? 'primary' : 'success'" disable-transitions>{{scope.row.nature}}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column fixed="right" label="操作" width="100">
+      <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
           <el-button @click="showDetail(scope.row)" type="primary" icon="el-icon-message" circle></el-button>
         </template>
       </el-table-column>
     </el-table>
     <p></p>
-    <div style="text-align: center;margin-top: 30px;">
+    <div style="margin: 0 auto;margin-top: 30px;">
       <el-pagination background layout="prev, pager, next" :total="total" @current-change="current_change">
       </el-pagination>
     </div>

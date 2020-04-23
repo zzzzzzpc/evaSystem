@@ -1,23 +1,35 @@
 <template>
-  <div>
-  <p>一键导入excel格式化毕业要求</p>
-  <form action="http://148.70.15.23:8000/indexTemplate/" method="post" enctype="multipart/form-data" target="view_window">
-    <input type='file' name='textfield' id='textfield'>
-    <input type="submit" name="submit" value="上传">
-  </form>
+  <div style="margin: 0 auto;">
 
-  <p/>
-  <a href="http://148.70.15.23:8000/download1/" download="http://148.70.15.23:8000/download1/" target="view_window">点击下载毕业要求模板</a>
-  <a href="http://148.70.15.23:8000/downloadIndex/" download="http://148.70.15.23:8000/download1/" target="view_window">导出数据</a>
-  <p/>
+    <el-row style="border-radius: 5px;background-color: #fff">
+      <h3>一键导入excel格式化毕业要求</h3>
+      <el-col :span="5">
+        <el-button type="warning" @click="downloadfile()">下载毕业要求模板</el-button>
+      </el-col>
+      <el-col :span="10" style="float: right;">
+        <el-upload
+          class="upload-demo"
+          ref="upload"
+          action="http://148.70.15.23:8000/courseTemplate/"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :file-list="fileList"
+          :auto-upload="false">
+          <el-button slot="trigger" type="primary">选取文件</el-button>
+          <el-button style="margin-left: 50px;" type="success" @click="submitUpload">上传文件</el-button>
+          <div slot="tip" class="el-upload__tip">只能上传模板格式的Excel文件</div>
+        </el-upload>
+      </el-col>
+    </el-row>
+
     <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
-      <el-table-column prop="index_id" label="毕业要求id" sortable width="180" column-key="courseId">
+      <el-table-column prop="index_id" label="毕业要求id" sortable column-key="courseId">
       </el-table-column>
-      <el-table-column prop="index_name" label="毕业要求名" width="180">
+      <el-table-column prop="index_name" label="毕业要求名">
       </el-table-column>
-      <el-table-column prop="index_content" label="毕业要求内容" width="180">
+      <el-table-column prop="index_content" label="毕业要求内容" width="600">
       </el-table-column>
-      <el-table-column fixed="right" label="移除" width="100">
+      <el-table-column fixed="right" label="移除">
         <template slot-scope="scope">
           <el-button @click="remove(scope.row)" type="danger" icon="el-icon-remove" circle></el-button>
         </template>
@@ -67,7 +79,6 @@
       getIndex() {
         SPApi.getIndex().then(res => {
           this.tableData = res.tableData
-          this.total = (Math.ceil(this.tableData.length / this.pagesize)) * 10
         })
       },
       addIndex() {
@@ -75,7 +86,6 @@
 
       },
       submit(){
-
         SPApi.submitIndex(this.textarea1, this.textarea2).then(res=>{
           if(res.message == "success" && this.textarea1 != "" && this.textarea2 != ""){
             this.$notify({
@@ -99,7 +109,7 @@
       },
       remove(row){
         SPApi.removeIndex(row.index_id).then(res=>{
-			console.log("90"+row.index_id)
+          console.log("90"+row.index_id)
           if(res.message == "success") {
             this.$notify({
               title: '成功',
@@ -114,7 +124,20 @@
             });
           }
         })
+      },
 
+      // 上传文件处理方法
+      submitUpload() {
+        this.$refs.upload.submit();
+      },
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePreview(file) {
+        console.log(file);
+      },
+      downloadfile(){
+        window.open("http://148.70.15.23:8000/download1/")
       }
     },
     created() {

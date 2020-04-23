@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="center">
     <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
-      <el-table-column prop="cno" label="课程号" sortable width="180" column-key="courseId">
+      <el-table-column prop="cno" label="课程号" sortable column-key="courseId">
       </el-table-column>
-      <el-table-column prop="cname" label="课程名" width="180">
+      <el-table-column prop="cname" label="课程名">
       </el-table-column>
       <el-table-column prop="warning" label="预警状态" :formatter="formatter" :filters="[{text: '预警', value: '预警'}, {text: '未预警', value: '未预警'}]"
         :filter-method="filterTag" filter-placement="bottom-end">
@@ -12,7 +12,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <div style="text-align: center;margin-top: 30px;">
+    <div style="margin: 0 auto;margin-top: 30px;">
       <el-pagination background layout="prev, pager, next" :total="total" @current-change="current_change">
       </el-pagination>
     </div>

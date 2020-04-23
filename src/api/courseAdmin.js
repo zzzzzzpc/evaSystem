@@ -16,12 +16,12 @@ export default {
     })
   },
   //获取课程负责人负责的课程
-  getCourseInfo(tno) {
+  getCourseInfo(cano) {
     return request({
       url: domain+'/caCourseInfo/',
       method: 'post',
       data: QS.stringify({
-        'tno': tno
+        'cano': cano 
       })
     })
   },

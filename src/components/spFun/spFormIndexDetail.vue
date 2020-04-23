@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin: 0 auto;">
   <el-select v-model="value" placeholder="请选择一个毕业要求">
     <el-option
       v-for="item in index"
@@ -14,11 +14,11 @@
   <div>
 
     <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
-      <el-table-column prop="index_detail_id" label="指标点id" sortable width="180" column-key="courseId">
+      <el-table-column prop="index_detail_id" label="指标点id" sortable column-key="courseId">
       </el-table-column>
-      <el-table-column prop="index_detail_content" label="指标点内容" width="180">
+      <el-table-column prop="index_detail_content" label="指标点内容" width="600">
       </el-table-column>
-      <el-table-column fixed="right" label="移除" width="100">
+      <el-table-column fixed="right" label="移除">
         <template slot-scope="scope">
           <el-button @click="removeIndexDetail(scope.row)" type="danger" icon="el-icon-remove" circle></el-button>
         </template>

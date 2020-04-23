@@ -48,7 +48,8 @@ body>.el-container {
     position: relative;
     margin:0 auto;
     padding: 20px;
-    top: 100px;
+    top: 93px;
+	left: 120px;
     border: 1px solid rgba(133,153,171,0.2);
     -webkit-box-shadow: 0 2px 26px 0 rgba(133,153,171,0.1);
     box-shadow: 0 2px 26px 0 rgba(133,153,171,0.1);
@@ -80,6 +81,7 @@ body>.el-container {
     top: 0;
     left: 0;
     right: 0;
+	z-index: 9;
   }
   .header__content {
     display: -webkit-flex;
@@ -174,7 +176,8 @@ body>.el-container {
     margin-left: 10px;
   }
   .user {
-    position: relative;
+    /* position: relative; */
+	position:fixed; 
     margin-bottom: 20px;
     top:100px;
     left:40px;
