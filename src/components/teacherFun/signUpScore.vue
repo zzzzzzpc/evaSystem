@@ -3,30 +3,29 @@
     <el-row>
       <div style="width: 20%;float: left;">
         <h3>一键导入成绩</h3>
-        <el-button type="warning" @click="downloadfile()">下载毕业要求模板</el-button>
-        <el-upload
-          name="file"
-          class="upload-demo"
-          ref="upload"
-          action="http://148.70.15.23:8000/gradeTemplate/"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :file-list="fileList"
-          :auto-upload="false">
-          <el-button style="margin-top: 30px;" slot="trigger" type="primary">选取文件</el-button>
-          <el-button style="margin-top: 30px;" type="success" @click="submitUpload">上传文件</el-button>
-          <div slot="tip" class="el-upload__tip">只能上传模板格式的Excel文件</div>
-        </el-upload>
+        <el-button type="warning" @click="downloadfile()">下载成绩模板</el-button>
+        <h4 style="color: red;">只能上传模板格式的Excel文件</h4>
       </div>
       <div style="width: 80%;float: right;">
         <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)">
-          <el-table-column prop="cno" label="课程号" sortable column-key="courseId">
+          <el-table-column prop="cno" label="课程号" sortable column-key="courseId" align="center">
           </el-table-column>
-          <el-table-column prop="cname" label="课程名">
+          <el-table-column prop="cname" label="课程名" align="center">
           </el-table-column>
-          <el-table-column fixed="right" label="操作">
+          <el-table-column fixed="right" label="操作" align="center">
             <template slot-scope="scope">
-              <el-button type="success" icon="el-icon-edit" circle @click="showStu(scope.row)"></el-button>
+              <el-button type="success" icon="el-icon-edit"  @click="showStu(scope.row)" style="float: left;"></el-button>
+              <el-upload
+                name="file"
+                :data="scope.row.cno"
+                class="upload-demo"
+                ref="upload"
+                action="http://148.70.15.23:8000/gradeTemplate/"
+                :auto-upload="true"
+                :show-file-list="false">
+                <el-button slot="trigger" type="primary">选取文件并上传</el-button>
+                <!-- <el-button style="margin-top: 30px;" type="success" @click="submitUpload">上传文件</el-button> -->
+              </el-upload>
             </template>
           </el-table-column>
         </el-table>
@@ -74,7 +73,6 @@
             <span style="float: left">{{ item.label }}</span>
             <span style="float: right; color: #8492a6; font-size: 13px">{{ item.state }}</span>
           </el-option>
-
         </el-select>
         <div class="block">
           <el-slider v-model="score" show-input>
@@ -93,6 +91,13 @@
   export default {
 
     methods: {
+      submitUpload(row) {
+        console.log("cno:"+row.cno);
+
+        console.log("cno::::"+this.$refs.upload.file);
+        // this.$refs.upload.submit();
+        this.loading = true;
+      },
       handleClick(row) {
         console.log(row);
       },
@@ -118,7 +123,6 @@
         })
       },
       showStudIndex(row) {
-
         this.innerTitleInfo = "【" + row.sname + "】" + "在【" + this.pageCname + "】的成绩"
         this.innerVisible_info = true
         TeacherApi.getIndexDetailScore(this.pageTag, row.sno).then(res => {
@@ -172,6 +176,7 @@
 
     data() {
       return {
+        loading:false,  // 文件默认上传方式
 
         innerTitle: "",
         innerTitleInfo: "",
