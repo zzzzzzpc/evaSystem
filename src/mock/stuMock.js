@@ -16,6 +16,7 @@ export default {
   'post|/stuCourseDetailScore': option => {
     return {
     cname: "数据结构",//课程名
+    courseScore:99,//课程达成度
       tableData: [{
         course_detail_name: "其中作业，平时表现，期末表现",//课程教学大纲内容
         index_detail_id: "1",//指标点编号

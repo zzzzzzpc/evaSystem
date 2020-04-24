@@ -27,6 +27,39 @@
 
 			</el-aside>
 			<el-main>
+
+        <div class = "center">
+				<div class="transition-box">预警学生名单</div>
+				<el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
+				  <el-table-column prop="sname" label="学生姓名" sortable width="180" column-key="courseId">
+				  </el-table-column>
+				  <el-table-column prop="sno" label="学号">
+				  </el-table-column>
+				  <el-table-column prop="classno" label="所在班级" width="100">
+				  </el-table-column>
+          <el-table-column fixed="right" label="查看预警科目">
+            <template slot-scope="scope">
+              <el-button type="danger" icon="el-icon-search" circle @click="warning(scope.row)"></el-button>
+            </template>
+          </el-table-column>
+				</el-table>
+        <p></p>
+        <div style="margin: 0 auto;margin-top: 20px;">
+          <el-pagination background layout="prev, pager, next" :total="total" @current-change="current_change">
+          </el-pagination>
+        </div>
+        </div>
+
+        <el-dialog width="30%" title="预警科目(达成度小于0.65)" :visible.sync="visible" append-to-body>
+
+          <el-table :data="courseData" style="width: 100%">
+            <el-table-column prop="cname" label="课程名" width="180">
+            </el-table-column>
+            <el-table-column prop="cno" label="课程号" width="180">
+            </el-table-column>
+          </el-table>
+        </el-dialog>
+
 				<router-view></router-view>
 			</el-main>
 		</el-container>
@@ -34,8 +67,19 @@
 </template>
 
 <script>
-
+  import tutorApi from '../../api/tutor.js'
 	export default {
+
+    data(){
+      return{
+        tableData:[],
+        pagesize:4,
+        total:0,
+        currentPage:1,
+        visible:false,
+        courseData:[],
+      }
+    },
 
 		props: ["name", "id", "index1", "index2", "index3", "role"],
 
@@ -45,8 +89,24 @@
 			},
 			handleClose(key, keyPath) {
 				console.log(key, keyPath);
-			}
+			},
+      warning(row) {
+        this.visible = true
+        tutorApi.getWarningCourse(row.sno).then(res=>{
+          this.courseData = res.tableData
+        })
+      },
+      current_change(currentPage) {
+        this.currentPage = currentPage
+      },
 		},
+    created(){
+      tutorApi.getWarningStu(this.$store.state.id).then(res=>{
+        this.tableData = res.tableData
+      })
+    }
+
+
 	}
 </script>
 
