@@ -8,12 +8,13 @@
       </el-col>
       <el-col :span="10" style="float: right;">
         <el-upload
+          name="textfield"
+          :limit="1"
           class="upload-demo"
           ref="upload"
           action="http://148.70.15.23:8000/courseTemplate/"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
-          :file-list="fileList"
           :auto-upload="false">
           <el-button slot="trigger" type="primary">选取文件</el-button>
           <el-button style="margin-left: 50px;" type="success" @click="submitUpload">上传文件</el-button>
