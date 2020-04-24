@@ -2,6 +2,28 @@
   <div class="center">
     <div class="transition-box" style="background-color: #CC5A5A;">个人评价达成度：{{indiv_score}}</div>
     <hr/>
+
+
+
+    <div class="transition-box">毕业要求评价结果</div>
+    <el-table ref="filterTable" :data="graData.slice((currentPageGra-1) * pagesize, currentPageGra * pagesize)" style="width: 100%">
+      <el-table-column prop="index_id" label="毕业要求id" sortable width="180" column-key="courseId">
+      </el-table-column>
+      <el-table-column prop="index_name" label="毕业要求名">
+      </el-table-column>
+      <el-table-column prop="score" label="评价值" width="100">
+      </el-table-column>
+    </el-table>
+
+    <p></p>
+    <div style="margin: 0 auto;margin-top: 30px;">
+      <el-pagination background layout="prev, pager, next" :total="total_gra" @current-change="current_change_gra">
+      </el-pagination>
+    </div>
+    <hr/>
+
+
+
     <div class="transition-box">指标点评价达成度</div>
     <el-table ref="filterTable" :data="indexTableData.slice((currentPageIndex-1) * pagesize, currentPageIndex * pagesize)" style="width: 100%">
       <el-table-column prop="index_detail_id" label="指标点序号" sortable column-key="courseId">
@@ -26,7 +48,6 @@
       </el-table-column>
       <el-table-column prop="cname" label="课程名" width="180">
       </el-table-column>
-
       <el-table-column prop="credit" label="课程学分" width="100">
       </el-table-column>
       </el-table-column>
@@ -70,7 +91,7 @@
     data() {
       return {
         indiv_score: 100,
-        
+
         multipleSelection: [],
         total: 0,
         total_index:0,
@@ -87,7 +108,12 @@
         formLabelWidth: '120px',
         outerVisible: false,
         //内层对话框数据
-        pageTag: '' //用来存放查看学生选课的课程号
+        pageTag: '' ,//用来存放查看学生选课的课程号
+
+        currentPageGra:1,
+        total_gra:0,
+        graData:[],//存放各种毕业要求
+
       }
     },
     methods: {
@@ -113,6 +139,9 @@
       current_change_index(currentPageIndex) {
         this.currentPageIndex = currentPageIndex
       },
+      current_change_gra(currentPageGra) {
+        this.currentPageGra = currentPageGra
+      },
 
       getStuIndex(){
         StudentApi.getIndexStu(this.$store.state.id).then(res =>{
@@ -136,10 +165,17 @@
            this.gridData = res.tableData
         })
       },
+      getIndexGra(){
+        StudentApi.getAllIndex().then(res =>{
+          this.total_gra = (Math.ceil(res.tableData.length / this.pagesize)) * 10
+          this.graData = res.tableData
+        })
+      }
     },
     created(to, from, next) {
       this.getCourseInfo()
       this.getStuIndex()
+      this.getIndexGra()
     }
 
 

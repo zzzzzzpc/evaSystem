@@ -36,7 +36,6 @@
 			// }
 		},
 		created() {
-			this.getInfo()
 		},
 
 	}

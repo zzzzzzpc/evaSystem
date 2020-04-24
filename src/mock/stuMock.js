@@ -58,5 +58,21 @@ export default {
         score:'66'//这个指标点对应的分数
       }]
     }
-  }
+  },
+
+  'post|/stuAllIndexGra': option => {
+    return {
+      tableData:[{
+        index_id: '1-1',//毕业要求的id
+        index_name: "计算能力",//毕业要求的名字
+        score:'0.66'//毕业要求的评价值
+      },
+      {
+        index_id: '9-3',//毕业要求的id
+        index_name: "学习能力",//毕业要求的名字
+        score:'0.78'//毕业要求的评价值
+      }]
+    }
+  },
+
 }

@@ -55,6 +55,16 @@ export default {
         'sno':sno
       })
     })
+  },
+  //获取这个学生所有整个毕业要求的评价值情况
+  getAllIndex(sno) {
+    return request({
+      url: domain+'stuAllIndexGra/',
+      method:'post',
+      data:QS.stringify({
+        'sno':sno
+      })
+    })
   }
 
 }
