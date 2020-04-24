@@ -1,5 +1,7 @@
 <template>
   <div class="center">
+    <el-button style="margin-top:10px" type="warning" @click="informVisble = !informVisble">查看通知</el-button>
+    <p/>
     <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
       <el-table-column prop="cno" label="课程号" sortable column-key="courseId"></el-table-column>
 
@@ -42,6 +44,14 @@
         </el-table>
       </el-dialog>
     </el-dialog>
+
+
+    <el-dialog width="30%" title="通知" :visible.sync="informVisble" append-to-body>
+      <el-card class="box-card">
+        <h1>{{inform}}</h1>
+      </el-card>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -65,7 +75,10 @@
         //内层对话框数据
         stuData: [],
         innerVisible: false,
-        pageTag: '' //用来存放查看学生选课的课程号
+        pageTag: '' ,//用来存放查看学生选课的课程号
+
+        inform:"",
+        informVisble:false
       }
     },
     methods: {
@@ -120,6 +133,9 @@
     },
     created(to, from, next) {
       this.getCourseInfo()
+      TeacherApi.getInform(this.$store.state.id).then(res=>{
+        this.inform = res.textarea
+      })
     }
 
 

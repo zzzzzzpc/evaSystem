@@ -85,21 +85,18 @@ export default {
 
   'post|/caCourseReview' :option =>{
     return {
-      total:1,
-      tableData:[{
-        sname:"肖梦杰",
-        sno:'123',
-        index_detail_id:'1',
-        index_detail_score:99,
-      },
-      {
-        sname:"赵鹏程",
-        sno:'456',
-        index_detail_id:'1',
-        index_detail_score:100,
-      },
-      ]
+      avg: 86,//这个班这门课的平均分
+      min: 60,//这个班这门课的最低分
+      max: 96,//这个班这门课的最高分
+      ydata:[100,66,44,33,22,11,10,9,8,7,6,5,4,3,2,1]//返回所有人成绩从高到低排列
     }
 
-  }
+  },
+  'post|/caInform' :option =>{
+    return {
+      message:"success"//通知失败返回fail
+    }
+
+  },
+
 }

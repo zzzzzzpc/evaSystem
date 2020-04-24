@@ -70,7 +70,7 @@ export default {
         {
           sno: "2017119074",
           sname: '赵小程',
-          roll_state: '审核完成'
+          roll_state: '登记完成'
 
         },
         {
@@ -121,6 +121,12 @@ export default {
         index_detail_id:"1-3",
         score:"5"
       }]
+    }
+  },
+
+  'post|/teaInform': option => {
+    return {
+      textarea:"这里返回给这个教师的消息"
     }
   }
 }

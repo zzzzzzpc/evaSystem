@@ -21,7 +21,7 @@ export default {
       url: domain+'/caCourseInfo/',
       method: 'post',
       data: QS.stringify({
-        'cano': cano 
+        'cano': cano
       })
     })
   },
@@ -66,6 +66,17 @@ export default {
       data:QS.stringify({
         'classno':classno,
         'cno':cno,
+      })
+    })
+  },
+  //给对应老师审核不通过的通知
+  informTea(cno, textarea) {
+    return request({
+      url: domain+'/caInform/',
+      method:'post',
+      data:QS.stringify({
+        'cno':cno,
+        'textarea':textarea//通知的内容
       })
     })
   }

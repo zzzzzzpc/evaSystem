@@ -1,8 +1,8 @@
 import request from '../utils/request.js'
 import QS from 'qs'
 
-let domain = "http://148.70.15.23:8000/"
-// let domain = "/"
+// let domain = "http://148.70.15.23:8000/"
+let domain = "/"
 
 export default {
   //请求老师基本信息
@@ -82,7 +82,19 @@ export default {
 
       })
     })
+  },
+  //获取这个教师下的通知
+  getInform(tno) {
+    return request({
+      url:domain+'teaInform/',
+      method: 'post',
+      data:QS.stringify({
+        'tno': tno,
+
+      })
+    })
   }
+
 
 
 }
