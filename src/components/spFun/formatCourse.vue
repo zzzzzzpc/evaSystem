@@ -1,15 +1,29 @@
 <template>
   <div style="margin: 0 auto;">
-  <p>一键导入excel分配课程指标点</p>
-  <form action="http://148.70.15.23:8000/courseTemplate/" method="post" enctype="multipart/form-data" target="view_window">
-    <input type='file' name='textfield' id='textfield' />
-    <input type="submit" name="submit" value="上传" />
-  </form>
 
-  <p>
-  <a href="http://148.70.15.23:8000/download2/" download="http://148.70.15.23:8000/download2/" target="view_window">点击下载课程模板</a>
-  <a href="http://148.70.15.23:8000/downloadCourse/" download="http://148.70.15.23:8000/download1/" target="view_window">导出数据</a>
-  <p/>
+    <el-row style="border-radius: 5px;background-color: #fff;width: 750px;padding: 0px 30px;">
+      <h3>一键导入excel分配课程指标点</h3>
+      <el-col :span="5">
+        <el-button type="warning" @click="downloadfile()">下载课程模板</el-button>
+      </el-col>
+      <el-col :span="5">
+        <el-button type="info" @click="exportfile()">导出数据</el-button>
+      </el-col>
+      <el-col :span="10" style="float: right;">
+        <el-upload
+          name="textfield"
+          :limit="1"
+          class="upload-demo"
+          ref="upload"
+          action="http://148.70.15.23:8000/courseTemplate/"
+          :auto-upload="false">
+          <el-button slot="trigger" type="primary">选取文件</el-button>
+          <el-button style="margin-left: 50px;" type="success" @click="submitUpload">上传文件</el-button>
+          <div slot="tip" class="el-upload__tip">只能上传模板格式的Excel文件</div>
+        </el-upload>
+      </el-col>
+    </el-row>
+
     <el-select v-model="value" placeholder="请选择一个指标点">
       <el-option v-for="item in index" :key="item.index_detail_id" :value="item.index_detail_id">
         <span style="float: left">{{ item.index_detail_id }}</span>
@@ -18,11 +32,11 @@
     <p></p>
 
     <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
-      <el-table-column prop="cno" label="课程id" sortable width="180" column-key="courseId">
+      <el-table-column prop="cno" label="课程id" column-key="courseId">
       </el-table-column>
-      <el-table-column prop="cname" label="课程名" width="180">
+      <el-table-column prop="cname" label="课程名">
       </el-table-column>
-      <el-table-column fixed="right" label="移除" width="100">
+      <el-table-column fixed="right" label="移除">
         <template slot-scope="scope">
           <el-button @click="removeCourse(scope.row)" type="danger" icon="el-icon-remove" circle></el-button>
         </template>
@@ -144,8 +158,16 @@
            });
          }
        })
-
-
+     },
+     downloadfile(){
+       window.open("http://148.70.15.23:8000/download2/")
+     },
+     exportfile(){
+       window.open("http://148.70.15.23:8000/downloadCourse/")
+     },
+     // 上传文件处理方法
+     submitUpload() {
+       this.$refs.upload.submit();
      }
     },
     watch: {
