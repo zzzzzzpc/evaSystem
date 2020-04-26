@@ -75,7 +75,6 @@
     </div>
     <!-- 展示对话框 -->
     <el-dialog title="课程详细信息" :visible.sync="dialogTableVisible">
-      <p>课程评价值：{{courseScore}}</p>
       <el-table :data="gridData">
         <el-table-column property="course_detail_name" label="课程教学大纲" width="150"></el-table-column>
         <el-table-column property="index_detail_id" label="指标点id" width="200"></el-table-column>
@@ -115,7 +114,6 @@
         total_gra:0,
         graData:[],//存放各种毕业要求
 
-        courseScore:0,
 
       }
     },
@@ -166,7 +164,6 @@
         this.dialogTableVisible = true
         StudentApi.getCourseDetailScore(this.$store.state.id, row.cno).then(res => {
            this.gridData = res.tableData
-           this.courseScore = res.courseScore
         })
       },
       getIndexGra(){

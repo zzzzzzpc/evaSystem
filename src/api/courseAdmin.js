@@ -58,14 +58,15 @@ export default {
     })
   },
 
-  //获取这门课这个班的情况
-  getCourseReview(classno,cno) {
+  //获取这门课这个班某个指标点的情况
+  getCourseReview(classno,cno, index_detail_id) {
     return request({
       url: domain+'/caCourseReview/',
       method:'post',
       data:QS.stringify({
         'classno':classno,
         'cno':cno,
+        'index_detail_id':index_detail_id
       })
     })
   },
@@ -77,6 +78,16 @@ export default {
       data:QS.stringify({
         'cno':cno,
         'textarea':textarea//通知的内容
+      })
+    })
+  },
+  //获取这门课所有的对应的指标点
+  getCourseIndexDetail(cno){
+    return request({
+      url: domain+'/caCourseIndexDetail/',
+      method:'post',
+      data:QS.stringify({
+        'cno':cno,
       })
     })
   }

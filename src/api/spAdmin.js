@@ -1,8 +1,8 @@
 import request from '../utils/request.js'
 import QS from 'qs'
 
-// let domain = "http://148.70.15.23:8000/"
-let domain = "/"
+let domain = "http://148.70.15.23:8000/"
+// let domain = "/"
 
 export default {
   //获取所有学业要求
@@ -80,12 +80,11 @@ export default {
   },
 
   //获取所有指标点
-  allIndextDetail(indexDetailId) {
+  allIndextDetail() {
     return request({
       url: domain+'spAllIndexDetail/',
       method: 'post',
       data: QS.stringify({
-        index_detail_id: indexDetailId
       })
     })
   },
@@ -125,17 +124,18 @@ export default {
     })
   },
 
-  //获取所有课程的平均分！
-  getAllCourseAvg(){
+  //获取某个指标点下所有课程的各自平均分！
+  getAllCourseAvg(id){
 	  return request({
 	    url: domain+'spGetAllCourseScore/',
 	    method:'post',
 	    data:{
+        index_detail_id:id
 	    }
 	  })
   },
 
-  //获取每个班级平均的分数
+  //获取每个班级平均个人评价值的分数
   getAllClassAvg(){
     return request({
       url:domain+'spGetAllClassScore/',
@@ -145,7 +145,7 @@ export default {
     })
   },
 
-  //获取整个年级平均分！！！
+  //获取整个年级个人评价值平均分！！！
   getAvg(){
     return request({
       url:domain+'spTotalAvg/',

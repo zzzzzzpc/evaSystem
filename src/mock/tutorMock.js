@@ -4,7 +4,7 @@ export default {
       tableData:[{
         sname:"李四",//有预警学生的姓名
         sno:"12345",//有预警学生的学号
-        classno:"2017-3",//有预警学生的班级
+        grade_id:"2017-3",//有预警学生的班级
       }]
     };
   },

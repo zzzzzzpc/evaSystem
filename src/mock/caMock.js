@@ -85,16 +85,27 @@ export default {
 
   'post|/caCourseReview' :option =>{
     return {
-      avg: 86,//这个班这门课的平均分
-      min: 60,//这个班这门课的最低分
-      max: 96,//这个班这门课的最高分
-      ydata:[100,66,44,33,22,11,10,9,8,7,6,5,4,3,2,1]//返回所有人成绩从高到低排列
+      avg: 86,//这个班这门课这个指标点的平均分
+      min: 60,//这个班这门课这个指标点的最低分
+      max: 96,//这个班这门课这个指标点的最高分
+      ydata:[100,66,44,33,22,11,10,9,8,7,6,5,4,3,2,1]//返回这个指标点所有人成绩从高到低排列
     }
 
   },
   'post|/caInform' :option =>{
     return {
       message:"success"//通知失败返回fail
+    }
+
+  },
+  'post|/caCourseIndexDetail' :option =>{
+    return {
+     tableData:[{
+       index_detail_id:'1-1'//指标点id
+     },
+     {
+       index_detail_id:'1-2'
+     }]
     }
 
   },

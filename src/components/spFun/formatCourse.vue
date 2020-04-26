@@ -89,7 +89,7 @@
       },
       getIndexDetail() {
 
-        SPApi.allIndextDetail(this.value).then(res => {
+        SPApi.allIndextDetail().then(res => {
           this.index = res.tableData
         })
       },

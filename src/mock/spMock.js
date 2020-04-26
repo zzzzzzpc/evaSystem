@@ -96,12 +96,12 @@ export default {
       tableData:[{
         cno:"1",
         cname:"计算机网络",
-        score:90,
+        score:0.9,
       },
       {
         cno:"2",
         cname:"数据结构",
-        score:99,
+        score:0.99,
       }]
     }
   },

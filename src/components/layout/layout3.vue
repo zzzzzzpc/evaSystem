@@ -35,7 +35,7 @@
 				  </el-table-column>
 				  <el-table-column prop="sno" label="学号">
 				  </el-table-column>
-				  <el-table-column prop="classno" label="所在班级" width="100">
+				  <el-table-column prop="grade_id" label="所在班级" width="100">
 				  </el-table-column>
           <el-table-column fixed="right" label="查看预警科目">
             <template slot-scope="scope">

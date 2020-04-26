@@ -80,6 +80,8 @@
       getIndex() {
         SPApi.getIndex().then(res => {
           this.tableData = res.tableData
+          this.total = (Math.ceil(this.tableData.length / this.pagesize)) * 10
+
         })
       },
       addIndex() {

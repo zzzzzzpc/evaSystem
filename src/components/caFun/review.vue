@@ -31,13 +31,21 @@
         </el-table-column>
         <el-table-column fixed="right" label="操作" width="150">
           <template slot-scope="scope">
-            <el-button @click="reviewCourse(scope.row)" type="warning">审核通过</el-button>
+            <el-button @click="reviewCourse(scope.row)" type="primary">审核</el-button>
           </template>
         </el-table-column>
       </el-table>
     </el-dialog>
     <!--审核成绩部分-->
     <el-dialog :title="innertitle" :visible.sync="innerVisible" width="30%">
+      <p></p>
+
+      <el-select v-model="choose" placeholder="请选择一个指标点">
+        <el-option v-for="item in index" :key="item.index_detail_id" :label="item.index_detail_id" :value="item.index_detail_id">
+          <span style="float: left">{{ item.index_detail_id }}</span>
+        </el-option>
+      </el-select>
+
       <p></p>
 
       <div id="myChart" :style="{width: '550px', height: '300px'}"></div>
@@ -51,7 +59,7 @@
 
     <el-dialog title="通知" :visible.sync="informVisible" width="30%">
       <p>输入通知教授这门课教授的消息</p>
-      <el-input type="textarea" :autosize="{ minRows: 1, maxRows: 10}" v-model="textarea"/>
+      <el-input type="textarea" :autosize="{ minRows: 1, maxRows: 10}" v-model="textarea" />
       <p></p>
       <el-button v-on:click="reviewScore($event)" type="success" id="" value="撤销审核">撤销审核</el-button>
     </el-dialog>
@@ -62,10 +70,13 @@
 <script>
   import CAApi from '../../api/courseAdmin.js'
   import TeacherApi from '../../api/teacher.js'
+
   export default {
     data() {
       return {
 
+        index:[],
+        choose:"",
         total: 0,
         pagesize: 4,
         currentPage: 1,
@@ -84,43 +95,46 @@
         pageName: '', //用来存放查看学生选课的课程名字
         pageTag: '', //存放课程号
 
-        pageClass:'',//存放班级号
+        pageClass: '', //存放班级号
 
         outertitle: '',
         innertitle: '',
 
-       avg:0,
-       min:0,
-       max:0,
+        avg: 0,
+        min: 0,
+        max: 0,
 
-       textarea:"",
+        textarea: "",
 
-       informVisible:false,
+        informVisible: false,
 
-       pass:"审核通过",
-       fail:"撤销审核",
+        pass: "审核通过",
+        fail: "撤销审核",
       }
     },
 
     methods: {
       drawLine(xdata, ydata) {
-              // 基于准备好的dom，初始化echarts实例
-              let myChart = this.$echarts.init(document.getElementById('myChart'))
-              // 绘制图表
-              // myChart.setOptions(this.)
-              myChart.setOption({
-                  title: { text: this.pageClass + '班学生成绩分布' },
-                  tooltip: {},
-                  xAxis: {
-                      data: xdata
-                  },
-                  yAxis: {},
-                  series: [{
-                      name: '分数',
-                      type: 'bar',
-                      data: ydata
-                  }]
-              });
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = this.$echarts.init(document.getElementById('myChart'))
+
+        // 绘制图表
+        // myChart.setOptions(this.)
+        myChart.setOption({
+          title: {
+            text: this.pageClass + '班学生成绩分布'
+          },
+          tooltip: {},
+          xAxis: {
+            data: xdata
+          },
+          yAxis: {},
+          series: [{
+            name: '分数',
+            type: 'bar',
+            data: ydata
+          }]
+        });
       },
       resetDateFilter() {
         this.$refs.filterTable.clearFilter('courseId');
@@ -173,33 +187,32 @@
 
         } else {
           this.innerVisible = true
+          this.innertitle = "审核【" + row.classno + "】班级在【" + this.pageName + "】"
+          // CAApi.getCourseReview(this.index[0].index_detail_id, row.classno, this.pageTag).then(res => {
+          //   this.avg = res.avg
+          //   this.max = res.max
+          //   this.min = res.min
+          //   var xdata = []
+          //   var ydata = res.ydata
+          //   this.drawLine(xdata, ydata)
 
-          this.innertitle = "审核【" + row.classno + "】班级在【" + this.pageName + "】的成绩"
-          CAApi.getCourseReview(row.classno, this.pageTag).then(res => {
-            this.avg = res.avg
-            this.max = res.max
-            this.min = res.min
-            var xdata = []
-            var ydata = res.ydata
-            this.drawLine(xdata, ydata)
-
-          })
+          // })
         }
       },
 
       reviewScore(event) {
         var state
         var result = event.currentTarget.value
-        if(result == "审核通过")
+        if (result == "审核通过")
           state = 1
         else
           state = 0
-        if(this.textarea != '' && state == 0 && this.informVisible == true) {
+        if (this.textarea != '' && state == 0 && this.informVisible == true) {
           alert(this.textarea)
           CAApi.informTea(this.pageTag, this.textarea)
         }
-        CAApi.setCourseState(this.pageClass, this.pageTag, state).then(res=>{
-          if(res.message == "fail") {
+        CAApi.setCourseState(this.pageClass, this.pageTag, state).then(res => {
+          if (res.message == "fail") {
             this.$notify.error({
               title: '失败',
               message: '审核修改失败，请联系管理员'
@@ -211,10 +224,10 @@
               type: 'success'
             });
 
-        }
-        CAApi.getCourseClass(this.pageTag).then(res => {
-          this.stuData = res.tableData
-        })
+          }
+          CAApi.getCourseClass(this.pageTag).then(res => {
+            this.stuData = res.tableData
+          })
         })
         this.textarea = ""
       }
@@ -222,7 +235,26 @@
     },
     created(to, from, next) {
       this.getCourseInfo()
-    }
+      CAApi.getCourseIndexDetail().then(res=>{
+        this.index = res.tableData
+      })
+
+    },
+    watch: {
+      choose(val) {
+        CAApi.getCourseReview(this.choose, this.pageClass, this.pageTag).then(res => {
+          let myChart = this.$echarts.init(document.getElementById('myChart'))
+          myChart.clear()
+          this.avg = res.avg
+          this.max = res.max
+          this.min = res.min
+          var xdata = []
+          var ydata = res.ydata
+          this.drawLine(xdata, ydata)
+
+        })
+      }
+    },
 
 
   }

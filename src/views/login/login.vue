@@ -53,7 +53,7 @@
 					  this.$store.state.role = res.role
 					  this.$store.state.name = res.name
 					  console.log("34343"+this.$store.state.role)
-					  if(this.$store.state.role == "辅导员")
+					  if(this.$store.state.role == "导员")
               this.$router.push({path: '/tutorInfo/navigation2'})
 					  else if(this.$store.state.role == "教师")
               this.$router.push({path: '/teacherInfo/navigation3'})

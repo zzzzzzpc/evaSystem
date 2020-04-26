@@ -14,15 +14,9 @@
           </el-table-column>
           <el-table-column fixed="right" label="操作" align="center">
             <template slot-scope="scope">
-              <el-button type="success" icon="el-icon-edit"  @click="showStu(scope.row)" style="float: left;"></el-button>
-              <el-upload
-                name="file"
-                :data="scope.row.cno"
-                class="upload-demo"
-                ref="upload"
-                action="http://148.70.15.23:8000/gradeTemplate/"
-                :auto-upload="true"
-                :show-file-list="false">
+              <el-button type="success" icon="el-icon-edit" @click="showStu(scope.row)" style="float: left;"></el-button>
+              <el-upload name="file" :data="{cno:scope.row.cno}" class="upload-demo" ref="upload" action="http://148.70.15.23:8000/gradeTemplate/"
+                :auto-upload="true" :show-file-list="false" :on-success="upload">
                 <el-button slot="trigger" type="primary">选取文件并上传</el-button>
                 <!-- <el-button style="margin-top: 30px;" type="success" @click="submitUpload">上传文件</el-button> -->
               </el-upload>
@@ -92,9 +86,9 @@
 
     methods: {
       submitUpload(row) {
-        console.log("cno:"+row.cno);
+        console.log("cno:" + row.cno);
 
-        console.log("cno::::"+this.$refs.upload.file);
+        console.log("cno::::" + this.$refs.upload.file);
         // this.$refs.upload.submit();
         this.loading = true;
       },
@@ -130,11 +124,11 @@
           this.indexDetailData = res.indexDetailData
         })
       },
-      downloadfile(){
+      downloadfile() {
         window.open("http://148.70.15.23:8000/downloadGrade/")
       },
       editStu(row) {
-		  this.pageSno = row.sno
+        this.pageSno = row.sno
         if (row.roll_state == "审核完成") {
           this.$notify.error({
             title: '错误',
@@ -154,7 +148,7 @@
         TeacherApi.postIndexDetailScore(this.pageTag, this.pageSno, this.value, this.score).then(res => {
 
           // if (res.status == 200) {
-		if (res.message == "success") {
+          if (res.message == "success") {
             this.$notify({
               title: '成功',
               message: '分值已经录入系统',
@@ -171,12 +165,30 @@
           }
         })
 
+      },
+      upload(res, file){
+        if (res.message == "success") {
+          this.$notify({
+            title: '成功',
+            message: '成绩已经上传',
+            type: 'success'
+          });
+          TeacherApi.getCourseStu(this.pageTag).then(res => {
+            this.stuData = res.tableData
+          })
+        } else {
+          this.$notify.error({
+            title: '错误',
+            message: '成绩上传失败，请联系管理员'
+          });
+        }
+
       }
     },
 
     data() {
       return {
-        loading:false,  // 文件默认上传方式
+        loading: false, // 文件默认上传方式
 
         innerTitle: "",
         innerTitleInfo: "",
@@ -191,7 +203,7 @@
         pageTag: '', //课程号
         pageCname: '',
         pageSname: '',
-		pageSno:'',
+        pageSno: '',
         stuData: [],
 
         options: [{
