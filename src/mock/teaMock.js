@@ -8,7 +8,7 @@ export default {
     return {
       total: 4,//一共教了多少课程的数目
       tableData: [{
-          cno: "1-1",
+          cno: "10",
           cname: "数据结构",
           nature: "必修课程",
           ca_name: "张三",
