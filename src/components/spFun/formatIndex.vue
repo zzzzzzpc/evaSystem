@@ -12,7 +12,7 @@
           :limit="1"
           class="upload-demo"
           ref="upload"
-          action="http://148.70.15.23:8000/courseTemplate/"
+          action="http://148.70.15.23:8000/indexTemplate/"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
           :auto-upload="false">
