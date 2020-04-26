@@ -17,7 +17,7 @@
               <el-button type="success" icon="el-icon-edit"  @click="showStu(scope.row)" style="float: left;"></el-button>
               <el-upload
                 name="file"
-                :data="scope.row.cno"
+                :data="{cno:scope.row.cno}"
                 class="upload-demo"
                 ref="upload"
                 action="http://148.70.15.23:8000/gradeTemplate/"
