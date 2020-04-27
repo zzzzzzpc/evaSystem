@@ -76,10 +76,10 @@
     <!-- 展示对话框 -->
     <el-dialog title="课程详细信息" :visible.sync="dialogTableVisible">
       <el-table :data="gridData">
-        <el-table-column property="course_detail_name" label="课程教学大纲" width="150"></el-table-column>
-        <el-table-column property="index_detail_id" label="指标点id" width="200"></el-table-column>
-        <el-table-column property="index_detail_content" label="指标点内容" width="200"></el-table-column>
-        <el-table-column property="index_score" label="评价值" width="200"></el-table-column>
+        <el-table-column property="course_detail_name" label="课程教学大纲"></el-table-column>
+        <el-table-column property="index_detail_id" label="指标点id"></el-table-column>
+        <el-table-column property="index_detail_content" label="指标点内容" width="300"></el-table-column>
+        <el-table-column property="index_score" label="评价值"></el-table-column>
       </el-table>
     </el-dialog>
   </div>

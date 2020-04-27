@@ -13,7 +13,7 @@
 	export default {
 		data() {
 			return {
-				name: "",
+				name: "严二轩",
 				id: "",
 				role:"",
 				index1: "负责课程信息",

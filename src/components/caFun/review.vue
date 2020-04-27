@@ -20,7 +20,7 @@
 
     <el-dialog width="30%" :title="outertitle" :visible.sync="outerVisible" append-to-body>
       <el-table :data="stuData">
-        <el-table-column property="grade_name" label="班级" width="150" sortable></el-table-column>
+        <el-table-column property="grade_name" label="班级" sortable></el-table-column>
         <!-- <el-table-column property="sname" label="姓名" width="150"></el-table-column> -->
         <el-table-column prop="state" label="登记状态" :formatter="formatter" :filters="[{text: '登记完成', value: '登记完成'}, {text: '登记缺失', value: '登记缺失'},
                        {text: '审核完成', value: '审核完成'}]"
@@ -48,7 +48,7 @@
 
       <p></p>
 
-      <div id="myChart" :style="{width: '550px', height: '300px'}"></div>
+      <div id="myChart" :style="{width: '350px', height: '300px'}"></div>
       <p>平均分：{{avg}}</p>
       <p>最高分：{{max}}</p>
       <p>最低分：{{min}}</p>

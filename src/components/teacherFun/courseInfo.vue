@@ -47,9 +47,9 @@
 
 
     <el-dialog width="30%" title="通知" :visible.sync="informVisble" append-to-body>
-      <el-card class="box-card">
-        <h1>{{inform}}</h1>
-      </el-card>
+      <!-- <el-card class="box-card" width="200px"> -->
+        <h4>{{inform}}</h4>
+      <!-- </el-card> -->
     </el-dialog>
 
   </div>
