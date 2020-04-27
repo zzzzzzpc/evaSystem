@@ -30,6 +30,47 @@
 	    	<router-link to="/" class="user__btn user__btn--blue"><span>{{index3}}</span></router-link>
 	    </div>
 	  </div>
+
+    <div class="center">
+       <div class="transition-box" style="background-color: #CC5A5A;">预警学生信息</div>
+      <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
+        <el-table-column prop="sname" label="姓名" sortable column-key="courseId">
+        </el-table-column>
+        <el-table-column prop="sno" label="学号">
+        </el-table-column>
+        <el-table-column prop="grade_id" label="班级">
+        </el-table-column>
+        <el-table-column fixed="right" label="操作" width="100">
+          <template slot-scope="scope">
+            <el-button-group>
+              <el-button type="danger" icon="el-icon-search" circle @click="warning(scope.row)"></el-button>
+            </el-button-group>
+          </template>
+        </el-table-column>
+      </el-table>
+      <div style="margin: 0 auto;margin-top: 30px;">
+        <el-pagination background layout="prev, pager, next" :total="total" @current-change="current_change">
+        </el-pagination>
+      </div>
+
+      <el-dialog width="30%" :title="innerTitleInfo" :visible.sync="visible" append-to-body>
+
+        <el-table :data="courseData.slice((currentPage1-1) * pagesize, currentPage1 * pagesize)" style="width: 100%">
+          <el-table-column prop="cname" label="课程名" width="180">
+          </el-table-column>
+          <el-table-column prop="cno" label="课程号" width="180">
+          </el-table-column>
+        </el-table>
+        <div style="margin: 0 auto;margin-top: 30px;">
+          <el-pagination background layout="prev, pager, next" :total="total1" @current-change="current_change1">
+          </el-pagination>
+        </div>
+      </el-dialog>
+
+
+
+    </div>
+
 	  <router-view></router-view>
 	</div>
 </template>
@@ -44,8 +85,10 @@
         pagesize:4,
         total:0,
         currentPage:1,
+        currentPage1:1,
         visible:false,
         courseData:[],
+        total1:[],
       }
     },
 
@@ -62,16 +105,23 @@
         this.visible = true
         tutorApi.getWarningCourse(row.sno).then(res=>{
           this.courseData = res.tableData
+          this.total1 = (Math.ceil(this.courseData.length / this.pagesize)) * 10
         })
       },
       current_change(currentPage) {
         this.currentPage = currentPage
       },
+      current_change1(currentPage) {
+        this.currentPage1 = currentPage
+      },
+
 		},
     created(){
       tutorApi.getWarningStu(this.$store.state.id).then(res=>{
         this.tableData = res.tableData
+        this.total = (Math.ceil(this.tableData.length / this.pagesize)) * 10
       })
+      this.role = this.$store.state.role
     }
 
 

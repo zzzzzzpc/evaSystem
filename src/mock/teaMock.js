@@ -111,15 +111,15 @@ export default {
     return {
       indexDetailData: [{
         index_detail_id:"1-1",//指标点编号
-        score:"3"//指标点的具体值
+        appraisal_value:"3"//指标点的具体值
       },
       {
         index_detail_id:"1-2",
-        score: "4"
+        appraisal_value: "4"
       },
       {
         index_detail_id:"1-3",
-        score:"5"
+        appraisal_value:"5"
       }]
     }
   },

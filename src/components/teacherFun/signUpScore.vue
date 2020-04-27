@@ -35,12 +35,12 @@
       <el-table :data="stuData">
         <el-table-column property="sno" label="学号" width="150" sortable></el-table-column>
         <el-table-column property="sname" label="姓名" width="200"></el-table-column>
-        <el-table-column prop="roll_state" label="登记状态" :filters="[{text: '登记完成', value: '登记完成'}, {text: '登记缺失', value: '登记缺失'}]"
+        <!-- <el-table-column prop="roll_state" label="登记状态" :filters="[{text: '登记完成', value: '登记完成'}, {text: '登记缺失', value: '登记缺失'}]"
           :filter-method="filterTag" filter-placement="bottom-end">
           <template slot-scope="scope">
             <el-tag :type="scope.row.roll_state == '登记完成' ? 'primary' : 'danger'" disable-transitions>{{scope.row.roll_state}}</el-tag>
           </template>
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
             <el-button-group>
@@ -56,7 +56,7 @@
         <el-table :data="indexDetailData" style="width: 100%">
           <el-table-column prop="index_detail_id" label="指标点id" width="180">
           </el-table-column>
-          <el-table-column prop="score" label="分值" width="180">
+          <el-table-column prop="appraisal_value" label="分值" width="180">
           </el-table-column>
         </el-table>
       </el-dialog>

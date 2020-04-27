@@ -129,9 +129,9 @@ export default {
 	  return request({
 	    url: domain+'spGetAllCourseScore/',
 	    method:'post',
-	    data:{
+	    data: QS.stringify({
         index_detail_id:id
-	    }
+	    })
 	  })
   },
 

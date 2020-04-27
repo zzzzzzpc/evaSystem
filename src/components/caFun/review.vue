@@ -20,13 +20,13 @@
 
     <el-dialog width="30%" :title="outertitle" :visible.sync="outerVisible" append-to-body>
       <el-table :data="stuData">
-        <el-table-column property="classno" label="班级" width="150" sortable></el-table-column>
+        <el-table-column property="grade_name" label="班级" width="150" sortable></el-table-column>
         <!-- <el-table-column property="sname" label="姓名" width="150"></el-table-column> -->
-        <el-table-column prop="roll_state" label="登记状态" :formatter="formatter" :filters="[{text: '登记完成', value: '登记完成'}, {text: '登记缺失', value: '登记缺失'},
+        <el-table-column prop="state" label="登记状态" :formatter="formatter" :filters="[{text: '登记完成', value: '登记完成'}, {text: '登记缺失', value: '登记缺失'},
                        {text: '审核完成', value: '审核完成'}]"
           :filter-method="filterTag" filter-placement="bottom-end">
           <template slot-scope="scope">
-            <el-tag :type="scope.row.roll_state == '审核完成' ? 'primary' : 'danger'" disable-transitions>{{scope.row.roll_state}}</el-tag>
+            <el-tag :type="scope.row.state == '审核完成' ? 'primary' : 'danger'" disable-transitions>{{scope.row.state}}</el-tag>
           </template>
         </el-table-column>
         <el-table-column fixed="right" label="操作" width="150">
@@ -75,8 +75,8 @@
     data() {
       return {
 
-        index:[],
-        choose:"",
+        index: [],
+        choose: "",
         total: 0,
         pagesize: 4,
         currentPage: 1,
@@ -146,7 +146,7 @@
         return row.address;
       },
       filterTag(value, row) {
-        return row.roll_state === value;
+        return row.state === value;
       },
       filterHandler(value, row, column) {
         const property = column['property'];
@@ -177,8 +177,8 @@
       },
 
       reviewCourse(row) {
-        this.pageClass = row.classno
-        if (row.roll_state == "登记缺失") {
+        this.pageClass = row.grade_name
+        if (row.state == "登记缺失") {
           this.innerVisible = false
           this.$notify.error({
             title: '错误',
@@ -187,7 +187,10 @@
 
         } else {
           this.innerVisible = true
-          this.innertitle = "审核【" + row.classno + "】班级在【" + this.pageName + "】"
+          this.innertitle = "审核【" + row.grade_name + "】班级在【" + this.pageName + "】"
+          CAApi.getCourseIndexDetail(this.pageTag).then(res=>{
+            this.index = res.tableData
+          })
           // CAApi.getCourseReview(this.index[0].index_detail_id, row.classno, this.pageTag).then(res => {
           //   this.avg = res.avg
           //   this.max = res.max
@@ -208,7 +211,6 @@
         else
           state = 0
         if (this.textarea != '' && state == 0 && this.informVisible == true) {
-          alert(this.textarea)
           CAApi.informTea(this.pageTag, this.textarea)
         }
         CAApi.setCourseState(this.pageClass, this.pageTag, state).then(res => {
@@ -226,6 +228,7 @@
 
           }
           CAApi.getCourseClass(this.pageTag).then(res => {
+            alert("!")
             this.stuData = res.tableData
           })
         })
@@ -235,14 +238,12 @@
     },
     created(to, from, next) {
       this.getCourseInfo()
-      CAApi.getCourseIndexDetail().then(res=>{
-        this.index = res.tableData
-      })
+
 
     },
     watch: {
       choose(val) {
-        CAApi.getCourseReview(this.choose, this.pageClass, this.pageTag).then(res => {
+        CAApi.getCourseReview(this.pageClass,this.pageTag,this.choose).then(res => {
           let myChart = this.$echarts.init(document.getElementById('myChart'))
           myChart.clear()
           this.avg = res.avg

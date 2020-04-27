@@ -57,22 +57,10 @@ export default {
     return {
       tableData: [{
 
-          classno: "2017-1",//班级号
-          roll_state: '登记完成',
+          grade_name: "2017-1",//班级号
+          state: '登记完成',
         },
-        {
-          classno: "2017-2",
-          roll_state: '审核完成'
-
-        },
-        {
-          classno: "2017-3",
-          roll_state: '登记缺失'
-        },
-        {
-          classno: "2017-4",
-          roll_state: '登记缺失'
-        }
+        
       ]
     }
   },

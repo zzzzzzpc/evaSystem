@@ -149,6 +149,7 @@
           this.indiv_score = res.indiv_score
           this.total_index = res.total
           this.indexTableData = res.tableData
+          this.total_index =  (Math.ceil(res.tableData.length / this.pagesize)) * 10
         })
       },
 
@@ -167,8 +168,8 @@
         })
       },
       getIndexGra(){
-        StudentApi.getAllIndex().then(res =>{
-          this.total_gra = (Math.ceil(res.tableData.length / this.pagesize)) * 10
+        StudentApi.getAllIndex(this.$store.state.id).then(res =>{
+          this.s = (Math.ceil(res.tableData.length / this.pagesize)) * 10
           this.graData = res.tableData
         })
       }
